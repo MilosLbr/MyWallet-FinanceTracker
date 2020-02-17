@@ -35,7 +35,7 @@ namespace MyWallet2.Providers
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
+            //identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
 
             context.Validated(identity);
 
