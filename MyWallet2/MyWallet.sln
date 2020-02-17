@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWallet2", "MyWallet2.csproj", "{0BA3B7E4-B583-477F-821E-43FDDB7B50ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWallet", "MyWallet.csproj", "{0BA3B7E4-B583-477F-821E-43FDDB7B50ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWallet.Data", "..\MyWallet.Data\MyWallet.Data.csproj", "{8C33D644-A4DE-458C-BA13-DB5BE01DB0D3}"
 EndProject
