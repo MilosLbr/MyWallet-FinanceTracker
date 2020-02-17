@@ -1,4 +1,6 @@
-﻿using MyWallet.Data;
+﻿using AutoMapper;
+using MyWallet.Data;
+using MyWallet.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,11 +16,13 @@ namespace MyWallet2.ControlersApi
     public class ValuesController : ApiController
     {
         private readonly MyWalletContext _context;
-        //private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
 
-        public ValuesController()
+
+        public ValuesController(MyWalletContext context, IMapper mapper)
         {
-            _context = new MyWalletContext();
+            _context = context;
+            _mapper = mapper;
         }
 
 
@@ -28,9 +32,9 @@ namespace MyWallet2.ControlersApi
         {
             var vals = await _context.Values.ToListAsync();
 
-            //var valsToreturn = _mapper.Map<IEnumerable<ValueDto>>(vals);
+            var valsToreturn = _mapper.Map<IEnumerable<ValueDto>>(vals);
 
-            return Ok(vals);
+            return Ok(valsToreturn);
 
         }
 
@@ -41,7 +45,7 @@ namespace MyWallet2.ControlersApi
         {
             var valFromDb = await _context.Values.FirstOrDefaultAsync(v => v.ValueId == valId);
 
-            //var mappedVal = _mapper.Map<ValueDto>(valFromDb);
+            var mappedVal = _mapper.Map<ValueDto>(valFromDb);
 
             return Ok(valFromDb);
         }

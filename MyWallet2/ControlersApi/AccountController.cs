@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
+using MyWallet.Data.DTO;
+using MyWallet.Data.MyIdentityConfiguration;
 using MyWallet2.Controllers;
 using MyWallet2.Models;
 using System;
@@ -14,72 +17,37 @@ namespace MyWallet2.ControlersApi
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-        private AuthRepository _repo = null;
+        private readonly IAuthRepository _authRepository;
+        private readonly IMapper _mapper;
 
-        public AccountController()
+        public AccountController(IAuthRepository authRepository, IMapper mapper)
         {
-            _repo = new AuthRepository();
+            _authRepository = authRepository;
+            _mapper = mapper;
         }
 
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(UserModel userModel)
+        public async Task<IHttpActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            var userToCreate = _mapper.Map<AspNetUser>(userForRegisterDto);
 
-            IdentityResult result = await _repo.RegisterUser(userModel);
+            var result = await _authRepository.Register(userToCreate, userForRegisterDto.Password);
 
-            IHttpActionResult errorResult = GetErrorResult(result);
-
-            if (errorResult != null)
+            if (result.Succeeded)
             {
-                return errorResult;
+                return StatusCode(HttpStatusCode.Created);
             }
 
-            return Ok();
+            return BadRequest("An error has ocured");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _repo.Dispose();
-            }
+        
 
-            base.Dispose(disposing);
-        }
-
-        private IHttpActionResult GetErrorResult(IdentityResult result)
-        {
-            if (result == null)
-            {
-                return InternalServerError();
-            }
-
-            if (!result.Succeeded)
-            {
-                if (result.Errors != null)
-                {
-                    foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error);
-                    }
-                }
-
-                if (ModelState.IsValid)
-                {
-                    // No ModelState errors are available to send, so just return an empty BadRequest.
-                    return BadRequest();
-                }
-
-                return BadRequest(ModelState);
-            }
-
-            return null;
-        }
     }
 }

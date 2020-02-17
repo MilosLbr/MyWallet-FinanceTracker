@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using MyWallet.Data.MyIdentityConfiguration;
 using MyWallet2.Models;
 using System;
 using System.Collections.Generic;
@@ -9,43 +11,31 @@ using System.Web;
 
 namespace MyWallet2.Controllers
 {
-    public class AuthRepository : IDisposable
+    public class AuthRepository : IAuthRepository, IDisposable
     {
-        private ApplicationDbContext _ctx;
-
-        private UserManager<ApplicationUser> _userManager;
-
+        private MyUserManager _userManager;
         public AuthRepository()
         {
-            _ctx = new ApplicationDbContext();
-            _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_ctx));
+            _userManager = HttpContext.Current.GetOwinContext().GetUserManager<MyUserManager>();
         }
 
-        public async Task<IdentityResult> RegisterUser(UserModel userModel)
+        public async Task<IdentityResult> Register(AspNetUser user, string password)
         {
-            ApplicationUser user = new ApplicationUser
-            {
-                UserName = userModel.UserName,
-                Email = userModel.Email
-            };
-
-            var result = await _userManager.CreateAsync(user, userModel.Password);
+            var result = await _userManager.CreateAsync(user, password);
 
             return result;
         }
 
-        public async Task<IdentityUser> FindUser(string userName, string password)
+        public async Task<AspNetUser> FindUser(string userName, string password)
         {
-            IdentityUser user = await _userManager.FindAsync(userName, password);
+            AspNetUser user = await _userManager.FindAsync(userName, password);
 
             return user;
         }
 
         public void Dispose()
         {
-            _ctx.Dispose();
             _userManager.Dispose();
-
         }
     }
 }
