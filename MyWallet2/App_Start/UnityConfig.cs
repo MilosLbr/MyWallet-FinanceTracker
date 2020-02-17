@@ -1,4 +1,6 @@
 using AutoMapper;
+using MyWallet.Services.Implementation;
+using MyWallet.Services.Interfaces;
 using MyWallet2.AutoMapperProfiles;
 using MyWallet2.Controllers;
 using System.Web.Http;
@@ -18,7 +20,7 @@ namespace MyWallet2
 
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterInstance<IMapper>(MapperConfig.Mapper);
-            container.RegisterType<AccountController>();
+            container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IAuthRepository, AuthRepository>();
 
             //GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

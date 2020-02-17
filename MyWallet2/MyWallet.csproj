@@ -253,6 +253,10 @@
       <Project>{8c33d644-a4de-458c-ba13-db5be01db0d3}</Project>
       <Name>MyWallet.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyWallet.Services\MyWallet.Services.csproj">
+      <Project>{439cfd73-6c89-4402-be0d-adefc4d64a7d}</Project>
+      <Name>MyWallet.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

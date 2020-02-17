@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MyWallet.Data;
 using MyWallet.Data.DTO;
+using MyWallet.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,14 +16,13 @@ namespace MyWallet2.ControlersApi
     [RoutePrefix("api/values")]
     public class ValuesController : ApiController
     {
-        private readonly MyWalletContext _context;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-
-        public ValuesController(MyWalletContext context, IMapper mapper)
+        public ValuesController(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _context = context;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -30,7 +30,7 @@ namespace MyWallet2.ControlersApi
         [Route("allThreeVals")]
         public async Task<IHttpActionResult> GetValues()
         {
-            var vals = await _context.Values.ToListAsync();
+            var vals = await _unitOfWork.Values.GetAll();
 
             var valsToreturn = _mapper.Map<IEnumerable<ValueDto>>(vals);
 
@@ -43,7 +43,7 @@ namespace MyWallet2.ControlersApi
         [Authorize(Roles = "User")]
         public async Task<IHttpActionResult> GetValueById(int valId)
         {
-            var valFromDb = await _context.Values.FirstOrDefaultAsync(v => v.ValueId == valId);
+            var valFromDb = await _unitOfWork.Values.SingleOrDefault(v => v.ValueId == valId);
 
             var mappedVal = _mapper.Map<ValueDto>(valFromDb);
 

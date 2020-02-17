@@ -36,14 +36,14 @@ namespace MyWallet.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public TEntity Get(int Id)
+        public Task<TEntity> Get(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            throw new NotImplementedException();
+            return await Entities.ToListAsync();
         }
 
         public void Remove(TEntity entity)
@@ -56,9 +56,9 @@ namespace MyWallet.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Entities.SingleOrDefaultAsync(predicate);
         }
 
         public void Update(TEntity entity)

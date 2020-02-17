@@ -10,10 +10,10 @@ namespace MyWallet.Services.Interfaces
     public interface IRepository<TEntity> where TEntity : class
     {
         // read
-        TEntity Get(int Id);
-        IEnumerable<TEntity> GetAll();
+        Task<TEntity> Get(int Id);
+        Task<IEnumerable<TEntity>> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
+        Task<TEntity> SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
         // add
         void Add(TEntity entity);
