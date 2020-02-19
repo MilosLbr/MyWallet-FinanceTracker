@@ -36,11 +36,12 @@ namespace MyWallet2
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new SimpleAuthorizationServerProvider()
+                Provider = new SimpleAuthorizationServerProvider(),
+                AccessTokenFormat = new CustomJwtFormat()
             };
 
             // Token Generation
-            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthAuthorizationServer(OAuthServerOptions);            
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
         }

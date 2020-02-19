@@ -38,7 +38,6 @@ namespace MyWallet2.Providers
             //identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
 
             context.Validated(identity);
-
         }
     }
 }
