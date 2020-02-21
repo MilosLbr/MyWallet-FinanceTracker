@@ -14,12 +14,27 @@
 
 a{
     cursor: pointer;
+    color: white;
+}
+
+a:hover{
+    opacity: 0.8;
+}
+
+.activeLink{
+    font-weight: bold;
+}
+.activeLink:hover{
+    opacity: 1;
 }
 
 .myBrand{
     align-self: flex-start;
     padding-top: 15px;
     padding-left: 15px;
+}
+.myBrand:hover a{
+    opacity: 0.95;
 }
 .myBrand > span{
     font-size: 2rem;

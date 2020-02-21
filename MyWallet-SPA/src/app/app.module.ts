@@ -12,6 +12,13 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AlertifyService } from './_services/alertify.service';
 import { HttpClientModule } from '@angular/common/http';
+import { IncomesComponent } from './incomes/incomes.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './_guards/auth-guard.service';
+
 
 @NgModule({
    declarations: [
@@ -19,18 +26,23 @@ import { HttpClientModule } from '@angular/common/http';
       HomeComponent,
       NavComponent,
       RegisterComponent,
-      LoginComponent
+      LoginComponent,
+      IncomesComponent,
+      ExpensesComponent,
+      DashboardComponent
    ],
    imports: [
       BrowserModule,
       FormsModule,
       HttpClientModule,
       AppRoutingModule,
-      TabsModule.forRoot()
+      TabsModule.forRoot(),
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
       AuthService,
-      AlertifyService
+      AlertifyService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
