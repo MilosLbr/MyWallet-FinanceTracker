@@ -1,0 +1,8 @@
+input.ng-invalid.ng-touched{
+    border: 1px solid #f5c6cb;
+}
+
+
+div.alert{
+    padding: .5rem 1rem;
+}

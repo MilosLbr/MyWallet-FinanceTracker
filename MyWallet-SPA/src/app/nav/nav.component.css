@@ -1,0 +1,26 @@
+.fixed-nav{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 220px;
+  min-width: 180px;
+  color: #f1f1f1;
+  height: 100%; /* Full height */
+  position: fixed; /* Make it stick, even on scroll */
+  top: 0;
+  left: 0;
+  overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
+
+a{
+    cursor: pointer;
+}
+
+.myBrand{
+    align-self: flex-start;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+.myBrand > span{
+    font-size: 2rem;
+}

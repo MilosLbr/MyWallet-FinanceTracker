@@ -1,0 +1,17 @@
+<div class="navbar navbar-dark bg-dark fixed-nav">
+  <div class="navbar-brand myBrand">
+  
+    <a *ngIf="!loggedIn()" class="d-flex align-items-center"><i class="fas fa-search-dollar fa-4x"></i>  <span>MyWallet</span></a>
+    <a *ngIf="loggedIn()" class="d-flex align-items-center flex-column">
+      <div class="d-flex align-items-center"><i class="fas fa-search-dollar fa-4x"></i>  <span>MyWallet</span></div>
+      <div>Welcome {{authService.getUserName() | titlecase}}</div>
+    </a>
+
+  </div>
+  <p class="nav-item">
+    <a class="nav-link">Nav component and features</a>
+  </p>
+  <p class="nav-item">
+    <a class="nav-link">Nav component and features</a>
+  </p>
+</div>

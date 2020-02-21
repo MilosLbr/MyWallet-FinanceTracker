@@ -21,8 +21,8 @@ namespace MyWallet2.Providers
             }
 
             var claims = data.Identity.Claims;
-            var tokenByteArray = Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings.Get("token"));
-            var key = new SymmetricSecurityKey(tokenByteArray);
+            var tokenKey = Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings.Get("key"));
+            var key = new SymmetricSecurityKey(tokenKey);
 
             var signInCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 

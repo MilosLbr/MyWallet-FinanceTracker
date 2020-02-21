@@ -10,8 +10,7 @@ export class AppComponent implements OnInit{
   title = 'MyWallet-SPA';
 
   ngOnInit(){
-    const baseUrl = environment.apiUrl;
-    
+     
   }
 
 }

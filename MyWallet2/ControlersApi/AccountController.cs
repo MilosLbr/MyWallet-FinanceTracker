@@ -39,12 +39,15 @@ namespace MyWallet2.ControlersApi
 
             var result = await _authRepository.Register(userToCreate, userForRegisterDto.Password);
 
+            
             if (result.Succeeded)
             {
                 return StatusCode(HttpStatusCode.Created);
             }
 
-            return BadRequest("An error has ocured");
+            var resultError = result.Errors.ToList()[0];
+
+            return BadRequest(resultError);
         }
 
         
