@@ -8,13 +8,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
 namespace MyWallet2.ControlersApi
 {
-    [RoutePrefix("api/bankAccounts")]
+    [RoutePrefix("api/users/{userId}/bankAccounts")]
     public class BankAccountsController : ApiController
     {
         private readonly IMapper _mapper;
@@ -27,14 +28,16 @@ namespace MyWallet2.ControlersApi
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> CreateAccount(BankAccountCreateDto bankAccountCreateDto)
+        [Route("")]
+        public async Task<IHttpActionResult> CreateAccount([FromBody]BankAccountCreateDto bankAccountCreateDto, long userId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Account name is required!");
             }
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
 
-            var userId = HttpContext.Current.User.Identity.GetUserName();
             bankAccountCreateDto.UserId = userId;
 
             var bankAccount = _mapper.Map<BankAccount>(bankAccountCreateDto);
@@ -47,6 +50,14 @@ namespace MyWallet2.ControlersApi
             }
 
             return BadRequest("Error happened while creating new account!");
+        }
+
+        public bool IsUserAuthorized (long userId)
+        {
+            if (userId != long.Parse(User.Identity.GetUserId()))
+                return false;
+
+            return true;
         }
 
     }

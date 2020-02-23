@@ -22,9 +22,11 @@ namespace MyWallet2
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
+            // Use unity dependency injection container
             config.DependencyResolver = new UnityDependencyResolver(UnityConfig.RegisterComponents());
 
-            
+            // Set authorize filter globally
+            config.Filters.Add(new AuthorizeAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

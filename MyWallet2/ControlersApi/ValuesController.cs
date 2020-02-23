@@ -16,6 +16,7 @@ using System.Web.Http.Controllers;
 namespace MyWallet2.ControlersApi
 {
     [RoutePrefix("api/values")]
+    
     public class ValuesController : ApiController
     {
         private readonly IMapper _mapper;
@@ -30,6 +31,7 @@ namespace MyWallet2.ControlersApi
 
         [HttpGet]
         [Route("allThreeVals")]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> GetValues()
         {
             var vals = await _unitOfWork.Values.GetAll();
