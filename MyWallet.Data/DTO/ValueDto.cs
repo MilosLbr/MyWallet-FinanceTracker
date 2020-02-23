@@ -10,5 +10,7 @@ namespace MyWallet.Data.DTO
     {
         public int ValueId { get; set; }
         public string ValueName { get; set; }
+
+        
     }
 }

@@ -31,5 +31,7 @@ namespace MyWallet.Data
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Value> Values { get; set; }
+        public virtual DbSet<BankAccount> BankAccounts { get; set; }
+        public virtual DbSet<IncomeCategory> IncomeCategories { get; set; }
     }
 }

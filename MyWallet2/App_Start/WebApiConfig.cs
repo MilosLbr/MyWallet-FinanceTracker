@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
+using MyWallet2.AutoMapperProfiles;
 using Newtonsoft.Json.Serialization;
+using Unity.WebApi;
 
 namespace MyWallet2
 {
@@ -20,8 +22,14 @@ namespace MyWallet2
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
+            config.DependencyResolver = new UnityDependencyResolver(UnityConfig.RegisterComponents());
+
+            
+
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

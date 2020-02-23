@@ -9,7 +9,8 @@ namespace MyWallet.Services.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IValuesRepository Values { get; }
-        int Complete();
+        IBankAccountsRepository BankAccounts { get; }
+        Task<int> Complete();
 
     }
 }

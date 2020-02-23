@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
 using MyWallet.Data.DTO;
-using MyWallet.Data.MyIdentityConfiguration;
+//using MyWallet.Data.MyIdentityConfiguration;
+using MyWallet.Data.MyIdentitySample;
 using MyWallet2.Controllers;
 using MyWallet2.Models;
 using System;
@@ -14,6 +15,7 @@ using System.Web.Http;
 
 namespace MyWallet2.ControlersApi
 {
+    // User accounts controler, used for registering users
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
@@ -35,7 +37,7 @@ namespace MyWallet2.ControlersApi
             {
                 return BadRequest(ModelState);
             }
-            var userToCreate = _mapper.Map<AspNetUser>(userForRegisterDto);
+            var userToCreate = _mapper.Map<MyUser>(userForRegisterDto);
 
             var result = await _authRepository.Register(userToCreate, userForRegisterDto.Password);
 

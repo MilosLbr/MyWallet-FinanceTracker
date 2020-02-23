@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using MyWallet.Data.MyIdentityConfiguration;
+using MyWallet.Data.MyIdentitySample;
+//using MyWallet.Data.MyIdentityConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace MyWallet2.Controllers
 {
     public interface IAuthRepository
     {
-        Task<IdentityResult> Register(AspNetUser user, string password);
-        Task<AspNetUser> FindUser(string userName, string password);
+        Task<IdentityResult> Register(MyUser user, string password);
+        Task<MyUser> FindUser(string userName, string password);
     }
 }

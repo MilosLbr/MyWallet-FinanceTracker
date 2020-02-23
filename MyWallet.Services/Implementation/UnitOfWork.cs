@@ -12,16 +12,18 @@ namespace MyWallet.Services.Implementation
     {
         private readonly MyWalletContext _context;
         public IValuesRepository Values { get; set; }
+        public IBankAccountsRepository BankAccounts { get; set; }
 
         public UnitOfWork(MyWalletContext context)
         {
             _context = context;
             Values = new ValuesRepository(_context);
+            BankAccounts = new BankAccountsRepository(_context);
         }
 
-        public int Complete()
+        public async Task<int> Complete()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()

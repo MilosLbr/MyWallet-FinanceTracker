@@ -23,7 +23,7 @@ namespace MyWallet.Services.Implementation
 
         public void Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            Entities.Add(entity);
         }
 
         public void AddRange(IEnumerable<TEntity> entities)

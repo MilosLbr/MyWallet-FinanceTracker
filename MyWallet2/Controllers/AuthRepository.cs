@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using MyWallet.Data.MyIdentityConfiguration;
+using MyWallet.Data.MyIdentitySample;
+//using MyWallet.Data.MyIdentityConfiguration;
 using MyWallet2.Models;
 using System;
 using System.Collections.Generic;
@@ -19,16 +20,16 @@ namespace MyWallet2.Controllers
             _userManager = HttpContext.Current.GetOwinContext().GetUserManager<MyUserManager>();
         }
 
-        public async Task<IdentityResult> Register(AspNetUser user, string password)
+        public async Task<IdentityResult> Register(MyUser user, string password)
         {
             var result = await _userManager.CreateAsync(user, password);
 
             return result;
         }
 
-        public async Task<AspNetUser> FindUser(string userName, string password)
+        public async Task<MyUser> FindUser(string userName, string password)
         {
-            AspNetUser user = await _userManager.FindAsync(userName, password);
+            var user = await _userManager.FindAsync(userName, password);
 
             return user;
         }

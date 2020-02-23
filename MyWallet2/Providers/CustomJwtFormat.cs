@@ -21,6 +21,7 @@ namespace MyWallet2.Providers
             }
 
             var claims = data.Identity.Claims;
+
             var tokenKey = Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings.Get("key"));
             var key = new SymmetricSecurityKey(tokenKey);
 
@@ -31,6 +32,8 @@ namespace MyWallet2.Providers
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = signInCredentials,
+                Audience = "all",
+                Issuer = "localhost"
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -42,7 +45,32 @@ namespace MyWallet2.Providers
 
         public AuthenticationTicket Unprotect(string protectedText)
         {
-            throw new NotImplementedException();
+            var tokenKey = Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings.Get("key"));
+            var key = new SymmetricSecurityKey(tokenKey);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateLifetime = true,
+                RequireSignedTokens = true,
+                IssuerSigningKey = key,
+                ValidAudience = "all",
+                ValidIssuer = "localhost",
+                ClockSkew = TimeSpan.Zero
+            };
+
+            var handler = new JwtSecurityTokenHandler();
+
+            SecurityToken token = null;
+
+            // Unpack token
+            var unpacked = handler.ReadJwtToken(protectedText);
+            string tstring = unpacked.RawData;
+
+            var principal = handler.ValidateToken(tstring, tokenValidationParameters, out token);
+
+            var identity = principal.Identities;
+
+            return new AuthenticationTicket(identity.First(), new AuthenticationProperties());
         }
     }
 }

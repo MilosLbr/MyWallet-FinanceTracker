@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using MyWallet2.Controllers;
 using System;
@@ -22,22 +23,33 @@ namespace MyWallet2.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
+            long userId;
             using (AuthRepository _repo = new AuthRepository())
             {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+                var user = await _repo.FindUser(context.UserName, context.Password);
 
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
+
+                userId = user.Id;
             }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.UserName));
-            //identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
+            var identity = new ClaimsIdentity("JWT");
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userId.ToString()));
+            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
 
-            context.Validated(identity);
+            var props = new AuthenticationProperties(new Dictionary<string, string>
+                {
+                    {
+                         "audience", "all"
+                    }
+                });
+
+            var ticket = new AuthenticationTicket(identity, props);
+            context.Validated(ticket);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using MyWallet.Data;
 using MyWallet.Data.DTO;
 using MyWallet.Services.Interfaces;
@@ -10,6 +11,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 
 namespace MyWallet2.ControlersApi
 {
@@ -38,11 +40,14 @@ namespace MyWallet2.ControlersApi
 
         }
 
+        [Authorize]
         [HttpGet]
         [Route("{valId}")]
-        [Authorize(Roles = "User")]
         public async Task<IHttpActionResult> GetValueById(int valId)
         {
+            var idePrinc = RequestContext.Principal;
+            var id = User.Identity.GetUserId();
+
             var valFromDb = await _unitOfWork.Values.SingleOrDefault(v => v.ValueId == valId);
 
             var mappedVal = _mapper.Map<ValueDto>(valFromDb);

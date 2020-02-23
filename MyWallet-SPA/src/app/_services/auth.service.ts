@@ -40,7 +40,7 @@ export class AuthService {
         if(token){
           sessionStorage.setItem("token", token.access_token);
           this.decodedToken = this.jwtHelper.decodeToken(token.access_token);
-          sessionStorage.setItem("username", this.decodedToken.nameid);
+          sessionStorage.setItem("username", this.decodedToken.unique_name);
         }
       })
     );

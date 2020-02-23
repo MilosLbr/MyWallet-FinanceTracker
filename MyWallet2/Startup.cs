@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler.Encoder;
+using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
-using MyWallet.Data.MyIdentityConfiguration;
+using MyWallet.Data.MyIdentitySample;
+//using MyWallet.Data.MyIdentityConfiguration;
 using MyWallet2.AutoMapperProfiles;
 using MyWallet2.Providers;
 using Owin;
@@ -18,10 +23,11 @@ namespace MyWallet2
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureOAuth(app);            
+            
             HttpConfiguration config = new HttpConfiguration();
-            config.DependencyResolver = new UnityDependencyResolver(UnityConfig.RegisterComponents());
-            WebApiConfig.Register(config);
+            ConfigureOAuth(app);
+            MapperConfig.RegisterProfiles();
+            WebApiConfig.Register(config);            
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
@@ -41,8 +47,11 @@ namespace MyWallet2
             };
 
             // Token Generation
-            app.UseOAuthAuthorizationServer(OAuthServerOptions);            
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions()
+            {
+                AccessTokenFormat = new CustomJwtFormat()
+            });
 
         }
     }
