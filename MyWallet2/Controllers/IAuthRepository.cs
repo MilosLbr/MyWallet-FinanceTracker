@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using MyWallet.Data;
+using MyWallet.Data.DTO;
 using MyWallet.Data.MyIdentitySample;
 //using MyWallet.Data.MyIdentityConfiguration;
 using System;

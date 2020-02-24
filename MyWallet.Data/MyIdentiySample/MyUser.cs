@@ -1,5 +1,6 @@
 ﻿namespace MyWallet.Data.MyIdentitySample
 {
+    using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -8,8 +9,7 @@
 
     public class MyUser : IdentityUser<long, MyLogin, MyUserRole, MyClaim>
     {
-        
-
+        //public  ICollection<Income> Incomes { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(MyUserManager userManager)
         {

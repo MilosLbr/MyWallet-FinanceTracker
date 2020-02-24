@@ -85,8 +85,12 @@
     </Compile>
     <Compile Include="DTO\BankAccountCreateDto.cs" />
     <Compile Include="DTO\BankAccountForListDto.cs" />
+    <Compile Include="DTO\UserForListDto.cs" />
     <Compile Include="DTO\UserForLoginDto.cs" />
     <Compile Include="DTO\ValueDto.cs" />
+    <Compile Include="Income.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="IncomeCategory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -105,13 +109,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="MyIdentityConfiguration\MyAspNetUser.cs" />
-    <Compile Include="MyIdentityConfiguration\IdentityModel.cs" />
-    <Compile Include="MyIdentityConfiguration\MyAspNetRole.cs" />
-    <Compile Include="MyIdentityConfiguration\MyAspNetUserClaim.cs" />
-    <Compile Include="MyIdentityConfiguration\MyAspNetUserLogin.cs" />
-    <Compile Include="MyIdentityConfiguration\MyAspNetUserRole.cs" />
-    <Compile Include="MyIdentityConfiguration\MyUserManager.cs" />
     <Compile Include="MyIdentiySample\ApplicationDbContext.cs" />
     <Compile Include="MyIdentiySample\EmailService.cs" />
     <Compile Include="MyIdentiySample\MyClaim.cs" />

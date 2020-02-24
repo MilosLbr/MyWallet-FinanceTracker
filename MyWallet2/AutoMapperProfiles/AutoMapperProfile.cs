@@ -17,6 +17,8 @@ namespace MyWallet2.AutoMapperProfiles
             CreateMap<Value, ValueDto>();
                         
             CreateMap<UserForRegisterDto, MyUser>();
+            CreateMap<MyUser, UserForListDto>();
+            CreateMap<User, UserForListDto>();
 
             CreateMap<BankAccountCreateDto, BankAccount>();
 

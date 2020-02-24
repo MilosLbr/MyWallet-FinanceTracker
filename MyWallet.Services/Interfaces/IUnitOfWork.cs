@@ -10,6 +10,8 @@ namespace MyWallet.Services.Interfaces
     {
         IValuesRepository Values { get; }
         IBankAccountsRepository BankAccounts { get; }
+        IIncomesRepository Incomes { get; }
+        IUsersRepository Users { get; }
         Task<int> Complete();
 
     }

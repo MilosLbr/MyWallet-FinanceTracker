@@ -28,6 +28,21 @@ namespace MyWallet2.ControlersApi
             _unitOfWork = unitOfWork;
         }
 
+        [HttpGet]
+        [Route("")]
+        public async Task<IHttpActionResult> GetBankAccountsForCurrentUser(long userId)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            var bankAccounts = await _unitOfWork.BankAccounts.Find(b => b.UserId == userId).ToListAsync();
+
+            var bankAccountsList = _mapper.Map<List<BankAccountForListDto>>(bankAccounts);
+
+            return Ok(bankAccountsList);
+
+        }
+
         [HttpPost]
         [Route("")]
         public async Task<IHttpActionResult> CreateAccount([FromBody]BankAccountCreateDto bankAccountCreateDto, long userId)
@@ -51,22 +66,7 @@ namespace MyWallet2.ControlersApi
             }
 
             return BadRequest("Error happened while creating new account!");
-        }
-
-        [HttpGet]
-        [Route("")]
-        public async Task<IHttpActionResult> GetBankAccountsForCurrentUser(long userId)
-        {
-            if(!IsUserAuthorized(userId))
-                return Unauthorized();
-
-            var bankAccounts = await _unitOfWork.BankAccounts.Find(b => b.UserId == userId).ToListAsync();
-
-            var bankAccountsList = _mapper.Map<List<BankAccountForListDto>>(bankAccounts);
-
-            return Ok(bankAccountsList);
-
-        }
+        }       
 
         private bool IsUserAuthorized (long userId)
         {

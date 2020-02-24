@@ -12,8 +12,8 @@ namespace MyWallet.Services.Implementation
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly MyWalletContext _context;
-        private readonly DbSet<TEntity> Entities;
+        protected readonly MyWalletContext _context;
+        protected readonly DbSet<TEntity> Entities;
 
         public Repository(MyWalletContext context)
         {

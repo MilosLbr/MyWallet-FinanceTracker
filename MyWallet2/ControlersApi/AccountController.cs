@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using MyWallet.Data.DTO;
 //using MyWallet.Data.MyIdentityConfiguration;
 using MyWallet.Data.MyIdentitySample;
+using MyWallet.Services.Interfaces;
 using MyWallet2.Controllers;
 using MyWallet2.Models;
 using System;
@@ -21,11 +22,13 @@ namespace MyWallet2.ControlersApi
     {
         private readonly IAuthRepository _authRepository;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountController(IAuthRepository authRepository, IMapper mapper)
+        public AccountController(IAuthRepository authRepository, IMapper mapper , IUnitOfWork unitOfWork)
         {
             _authRepository = authRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         // POST api/Account/Register
@@ -52,7 +55,16 @@ namespace MyWallet2.ControlersApi
             return BadRequest(resultError);
         }
 
-        
+        [HttpGet]
+        [Route("{userId}/getUserData")]
+        public async Task<IHttpActionResult> GetUserData(long userId)
+        {
+            var user = await _unitOfWork.Users.GetUserData(userId);
+
+            var userDetails = _mapper.Map<UserForListDto>(user);
+
+            return Ok(userDetails);
+        }
 
     }
 }

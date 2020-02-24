@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using MyWallet.Data;
 using MyWallet.Data.MyIdentitySample;
-//using MyWallet.Data.MyIdentityConfiguration;
-using MyWallet2.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -15,6 +15,7 @@ namespace MyWallet2.Controllers
     public class AuthRepository : IAuthRepository, IDisposable
     {
         private MyUserManager _userManager;
+
         public AuthRepository()
         {
             _userManager = HttpContext.Current.GetOwinContext().GetUserManager<MyUserManager>();
@@ -33,6 +34,7 @@ namespace MyWallet2.Controllers
 
             return user;
         }
+        
 
         public void Dispose()
         {

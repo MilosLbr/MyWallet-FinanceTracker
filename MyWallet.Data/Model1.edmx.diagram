@@ -18,6 +18,10 @@
         <AssociationConnector Association="MyWalletModel.FK_dbo_UserClaim_dbo_User_UserId" />
         <AssociationConnector Association="MyWalletModel.FK_dbo_UserLogin_dbo_User_UserId" />
         <AssociationConnector Association="MyWalletModel.UserRole" />
+        <EntityTypeShape EntityType="MyWalletModel.Income" Width="1.5" PointX="7.25" PointY="6.375" />
+        <AssociationConnector Association="MyWalletModel.FK_Incomes_BankAccounts" />
+        <AssociationConnector Association="MyWalletModel.FK_Incomes_IncomeCategories" />
+        <AssociationConnector Association="MyWalletModel.FK_Incomes_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

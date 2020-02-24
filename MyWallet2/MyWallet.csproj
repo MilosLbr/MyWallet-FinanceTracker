@@ -227,6 +227,7 @@
     <Compile Include="AutoMapperProfiles\MapperConfig.cs" />
     <Compile Include="ControlersApi\AccountController.cs" />
     <Compile Include="ControlersApi\BankAccountsController.cs" />
+    <Compile Include="ControlersApi\IncomesController.cs" />
     <Compile Include="ControlersApi\ValuesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthRepository.cs" />

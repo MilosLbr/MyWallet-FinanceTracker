@@ -14,11 +14,19 @@ namespace MyWallet.Data
     
     public partial class BankAccount
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BankAccount()
+        {
+            this.Incomes = new HashSet<Income>();
+        }
+    
         public int Id { get; set; }
         public string AccountName { get; set; }
         public decimal Ballance { get; set; }
         public long UserId { get; set; }
     
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Income> Incomes { get; set; }
     }
 }

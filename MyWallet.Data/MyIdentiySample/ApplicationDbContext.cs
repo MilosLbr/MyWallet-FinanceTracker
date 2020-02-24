@@ -8,6 +8,7 @@
     
     public class ApplicationDbContext : IdentityDbContext<MyUser, MyRole, long, MyLogin, MyUserRole, MyClaim>
     {
+
         #region constructors and destructors
 
         public ApplicationDbContext()
@@ -33,6 +34,7 @@
             modelBuilder.Entity<MyClaim>().ToTable("UserClaim");
             modelBuilder.Entity<MyLogin>().ToTable("UserLogin");
             modelBuilder.Entity<MyUserRole>().ToTable("UserRole");
+
             // Set AutoIncrement-Properties
             modelBuilder.Entity<MyUser>().Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<MyClaim>().Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
