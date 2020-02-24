@@ -23,6 +23,12 @@ namespace MyWallet2.AutoMapperProfiles
             CreateMap<BankAccountCreateDto, BankAccount>();
 
             CreateMap<BankAccount, BankAccountForListDto>();
+
+            CreateMap<Income, IncomeForListDto>();
+            CreateMap<IncomeForCreateDto, Income>();
+
+            CreateMap<IncomeCategory, IncomeCategoryDto>();
+            CreateMap<IncomeCategoryDto, IncomeCategory>();
         }
     }
 }

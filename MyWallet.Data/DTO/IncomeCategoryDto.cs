@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyWallet.Data.DTO
 {
-    public class BankAccountForListDto
+    public class IncomeCategoryDto
     {
         public int Id { get; set; }
-        public string AccountName { get; set; }
-        
-        public decimal Ballance { get; set; }
-
-        public long UserId { get; set; }
+        public string IncomeCategoryName { get; set; }
     }
 }

@@ -85,6 +85,9 @@
     </Compile>
     <Compile Include="DTO\BankAccountCreateDto.cs" />
     <Compile Include="DTO\BankAccountForListDto.cs" />
+    <Compile Include="DTO\IncomeCategoryDto.cs" />
+    <Compile Include="DTO\IncomeForCreateDto.cs" />
+    <Compile Include="DTO\IncomeForListDto.cs" />
     <Compile Include="DTO\UserForListDto.cs" />
     <Compile Include="DTO\UserForLoginDto.cs" />
     <Compile Include="DTO\ValueDto.cs" />

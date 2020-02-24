@@ -65,7 +65,7 @@ namespace MyWallet2.ControlersApi
                 return Created(new Uri(Request.RequestUri + "/" + bankAccount.Id), bankAccount);
             }
 
-            return BadRequest("Error happened while creating new account!");
+            return BadRequest("An error happened while creating new account!");
         }       
 
         private bool IsUserAuthorized (long userId)
