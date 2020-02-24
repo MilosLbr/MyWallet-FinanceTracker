@@ -12,12 +12,12 @@ namespace MyWallet.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class BankAccount
+    public partial class UserClaim
     {
         public int Id { get; set; }
-        public string AccountName { get; set; }
-        public decimal Ballance { get; set; }
         public long UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
         public virtual User User { get; set; }
     }

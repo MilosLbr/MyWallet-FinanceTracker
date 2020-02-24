@@ -4,6 +4,7 @@ using MyWallet.Data;
 using MyWallet.Data.DTO;
 using MyWallet.Services.Interfaces;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -52,7 +53,22 @@ namespace MyWallet2.ControlersApi
             return BadRequest("Error happened while creating new account!");
         }
 
-        public bool IsUserAuthorized (long userId)
+        [HttpGet]
+        [Route("")]
+        public async Task<IHttpActionResult> GetBankAccountsForCurrentUser(long userId)
+        {
+            if(!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            var bankAccounts = await _unitOfWork.BankAccounts.Find(b => b.UserId == userId).ToListAsync();
+
+            var bankAccountsList = _mapper.Map<List<BankAccountForListDto>>(bankAccounts);
+
+            return Ok(bankAccountsList);
+
+        }
+
+        private bool IsUserAuthorized (long userId)
         {
             if (userId != long.Parse(User.Identity.GetUserId()))
                 return false;

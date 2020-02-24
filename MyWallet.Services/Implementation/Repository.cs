@@ -31,9 +31,9 @@ namespace MyWallet.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return Entities.Where(predicate);
         }
 
         public Task<TEntity> Get(int Id)

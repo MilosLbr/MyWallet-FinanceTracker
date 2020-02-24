@@ -12,12 +12,12 @@ namespace MyWallet.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserLogin
+    public partial class UserLogin
     {
         public string LoginProvider { get; set; }
         public string ProviderKey { get; set; }
-        public string UserId { get; set; }
+        public long UserId { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual User User { get; set; }
     }
 }

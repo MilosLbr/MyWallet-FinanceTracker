@@ -15,13 +15,12 @@ namespace MyWallet2.AutoMapperProfiles
         public AutoMapperProfile()
         {
             CreateMap<Value, ValueDto>();
-
-            //CreateMap<UserForRegisterDto, MyAspNetUser>();
+                        
             CreateMap<UserForRegisterDto, MyUser>();
 
             CreateMap<BankAccountCreateDto, BankAccount>();
 
-
+            CreateMap<BankAccount, BankAccountForListDto>();
         }
     }
 }

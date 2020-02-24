@@ -12,7 +12,7 @@ namespace MyWallet.Services.Interfaces
         // read
         Task<TEntity> Get(int Id);
         Task<IEnumerable<TEntity>> GetAll();
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
         // add
