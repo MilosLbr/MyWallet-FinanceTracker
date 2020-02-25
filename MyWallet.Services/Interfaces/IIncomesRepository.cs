@@ -1,4 +1,6 @@
-﻿using MyWallet.Data;
+﻿using AutoMapper;
+using MyWallet.Data;
+using MyWallet.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +11,6 @@ namespace MyWallet.Services.Interfaces
 {
     public interface IIncomesRepository : IRepository<Income>
     {
+        Income AddMoneyToBankAccount(long userId, User user, IncomeForCreateDto incomeForCreateDto, IMapper mapper);
     }
 }

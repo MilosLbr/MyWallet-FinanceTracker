@@ -45,16 +45,19 @@ namespace MyWallet2.ControlersApi
         {
             if (!IsUserAuthorized(userId))
                 return Unauthorized();
-            
-            incomeForCreateDto.UserId = userId;
 
-            var incomeForDb = _mapper.Map<Income>(incomeForCreateDto);
+            var bankAccountId = incomeForCreateDto.BankAccountId;
+            var userFromDb = await _unitOfWork.Users.GetUserData(userId);
 
-            _unitOfWork.Incomes.Add(incomeForDb);
+            if (!userFromDb.BankAccounts.Any(b => b.Id == bankAccountId))
+                return BadRequest("Current User doesn't own this account!");
+
+            var incomeForDb = _unitOfWork.Incomes.AddMoneyToBankAccount(userId, userFromDb, incomeForCreateDto, _mapper);                      
 
             if (await _unitOfWork.Complete() > 0)
             {
-                return Created(new Uri(Request.RequestUri + "/" + incomeForDb.Id), incomeForDb);
+                var incomesList = _mapper.Map<IncomeForListDto>(incomeForDb);
+                return Created(new Uri(Request.RequestUri + "/" + incomeForDb.Id), incomesList);
             }
 
             return BadRequest("An error happened while creating new income!");

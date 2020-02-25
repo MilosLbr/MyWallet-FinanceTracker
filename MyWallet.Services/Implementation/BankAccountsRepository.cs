@@ -1,4 +1,5 @@
 ﻿using MyWallet.Data;
+using MyWallet.Data.DTO;
 using MyWallet.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,7 @@ namespace MyWallet.Services.Implementation
         public BankAccountsRepository(MyWalletContext context) : base(context)
         {
         }
+        public MyWalletContext DbContext { get { return _context as MyWalletContext; } }
+                      
     }
 }
