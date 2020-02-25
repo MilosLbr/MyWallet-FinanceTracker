@@ -15,6 +15,8 @@ namespace MyWallet.Services.Implementation
         public IBankAccountsRepository BankAccounts { get; set; }
         public IIncomesRepository Incomes { get; set; }
         public IUsersRepository Users { get; set; }
+        public IExpensesRepository Expenses { get; set; }
+        public IExpenseCategoriesRepository ExpenseCategories { get; set; }
         public UnitOfWork(MyWalletContext context)
         {
             _context = context;
@@ -22,6 +24,8 @@ namespace MyWallet.Services.Implementation
             BankAccounts = new BankAccountsRepository(_context);
             Incomes = new IncomesRepository(_context);
             Users = new UsersRepository(_context);
+            Expenses = new ExpensesRepository(_context);
+            ExpenseCategories = new ExpenseCategoriesRepository(_context);
         }
 
         public async Task<int> Complete()

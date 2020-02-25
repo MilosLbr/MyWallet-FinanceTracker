@@ -22,6 +22,7 @@ namespace MyWallet.Data
             this.UserLogins = new HashSet<UserLogin>();
             this.Roles = new HashSet<Role>();
             this.Incomes = new HashSet<Income>();
+            this.Expenses = new HashSet<Expense>();
         }
     
         public long Id { get; set; }
@@ -47,5 +48,7 @@ namespace MyWallet.Data
         public virtual ICollection<Role> Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Income> Incomes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Expense> Expenses { get; set; }
     }
 }

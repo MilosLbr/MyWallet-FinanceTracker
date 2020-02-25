@@ -13,5 +13,6 @@ namespace MyWallet.Data.DTO
         public string UserName { get; set; }
         public  ICollection<BankAccountForListDto> BankAccounts { get; set; }
         public  ICollection<IncomeForListDto> Incomes { get; set; }
+        public ICollection<ExpensesForListDto> Expenses { get; set; }
     }
 }

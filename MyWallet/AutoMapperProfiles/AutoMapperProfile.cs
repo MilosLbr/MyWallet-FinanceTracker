@@ -30,6 +30,12 @@ namespace MyWallet2.AutoMapperProfiles
 
             CreateMap<IncomeCategory, IncomeCategoryDto>();
             CreateMap<IncomeCategoryDto, IncomeCategory>();
+
+            CreateMap<ExpenseCategory, ExpenseCategoryDto>();
+            CreateMap<ExpenseCategoryDto, ExpenseCategory>();
+
+            CreateMap<Expense, ExpensesForListDto>();
+            CreateMap<ExpenseForCreateDto, Expense>();
         }
     }
 }

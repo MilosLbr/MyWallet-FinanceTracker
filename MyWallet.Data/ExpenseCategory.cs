@@ -12,23 +12,17 @@ namespace MyWallet.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class BankAccount
+    public partial class ExpenseCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BankAccount()
+        public ExpenseCategory()
         {
-            this.Incomes = new HashSet<Income>();
             this.Expenses = new HashSet<Expense>();
         }
     
         public int Id { get; set; }
-        public string AccountName { get; set; }
-        public decimal Ballance { get; set; }
-        public long UserId { get; set; }
+        public string ExpenseCategoryName { get; set; }
     
-        public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Income> Incomes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expense> Expenses { get; set; }
     }

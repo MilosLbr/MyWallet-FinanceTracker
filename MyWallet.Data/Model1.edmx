@@ -24,6 +24,25 @@
           <Property Name="Ballance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="UserId" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="ExpenseCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExpenseCategoryName" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Expenses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="BankAccountId" Type="int" Nullable="false" />
+          <Property Name="ExpenseCategoryId" Type="int" Nullable="false" />
+          <Property Name="Ammount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="IncomeCategories">
           <Key>
             <PropertyRef Name="Id" />
@@ -181,6 +200,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Expenses_BankAccounts">
+          <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="BankAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ExpenseCategories">
+          <End Role="ExpenseCategories" Type="Self.ExpenseCategories" Multiplicity="1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="ExpenseCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Incomes_BankAccounts">
           <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="1" />
           <End Role="Incomes" Type="Self.Incomes" Multiplicity="*" />
@@ -222,6 +279,8 @@
         <EntityContainer Name="MyWalletModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankAccounts" EntityType="Self.BankAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpenseCategories" EntityType="Self.ExpenseCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expenses" EntityType="Self.Expenses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IncomeCategories" EntityType="Self.IncomeCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Incomes" EntityType="Self.Incomes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -250,6 +309,18 @@
           <AssociationSet Name="FK_dbo_UserRole_dbo_User_UserId" Association="Self.FK_dbo_UserRole_dbo_User_UserId">
             <End Role="User" EntitySet="User" />
             <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_BankAccounts" Association="Self.FK_Expenses_BankAccounts">
+            <End Role="BankAccounts" EntitySet="BankAccounts" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ExpenseCategories" Association="Self.FK_Expenses_ExpenseCategories">
+            <End Role="ExpenseCategories" EntitySet="ExpenseCategories" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_User" Association="Self.FK_Expenses_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Expenses" EntitySet="Expenses" />
           </AssociationSet>
           <AssociationSet Name="FK_Incomes_BankAccounts" Association="Self.FK_Incomes_BankAccounts">
             <End Role="BankAccounts" EntitySet="BankAccounts" />
@@ -324,6 +395,20 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Income" EntitySet="Incomes" />
           </AssociationSet>
+          <EntitySet Name="ExpenseCategories" EntityType="MyWalletModel.ExpenseCategory" />
+          <EntitySet Name="Expenses" EntityType="MyWalletModel.Expense" />
+          <AssociationSet Name="FK_Expenses_BankAccounts" Association="MyWalletModel.FK_Expenses_BankAccounts">
+            <End Role="BankAccount" EntitySet="BankAccounts" />
+            <End Role="Expens" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ExpenseCategories" Association="MyWalletModel.FK_Expenses_ExpenseCategories">
+            <End Role="ExpenseCategory" EntitySet="ExpenseCategories" />
+            <End Role="Expens" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_User" Association="MyWalletModel.FK_Expenses_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Expens" EntitySet="Expenses" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BankAccount">
           <Key>
@@ -335,6 +420,7 @@
           <Property Name="UserId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="User" Relationship="MyWalletModel.FK_BankAccounts_User" FromRole="BankAccount" ToRole="User" />
           <NavigationProperty Name="Incomes" Relationship="MyWalletModel.FK_Incomes_BankAccounts" FromRole="BankAccount" ToRole="Income" />
+          <NavigationProperty Name="Expenses" Relationship="MyWalletModel.FK_Expenses_BankAccounts" FromRole="BankAccount" ToRole="Expens" />
         </EntityType>
         <EntityType Name="IncomeCategory">
           <Key>
@@ -383,6 +469,7 @@
           <NavigationProperty Name="UserLogins" Relationship="MyWalletModel.FK_dbo_UserLogin_dbo_User_UserId" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="Roles" Relationship="MyWalletModel.UserRole" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Incomes" Relationship="MyWalletModel.FK_Incomes_User" FromRole="User" ToRole="Income" />
+          <NavigationProperty Name="Expenses" Relationship="MyWalletModel.FK_Expenses_User" FromRole="User" ToRole="Expens" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -504,6 +591,67 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ExpenseCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExpenseCategoryName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Expenses" Relationship="MyWalletModel.FK_Expenses_ExpenseCategories" FromRole="ExpenseCategory" ToRole="Expens" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BankAccountId" Type="Int32" Nullable="false" />
+          <Property Name="ExpenseCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Ammount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Comment" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="BankAccount" Relationship="MyWalletModel.FK_Expenses_BankAccounts" FromRole="Expens" ToRole="BankAccount" />
+          <NavigationProperty Name="ExpenseCategory" Relationship="MyWalletModel.FK_Expenses_ExpenseCategories" FromRole="Expens" ToRole="ExpenseCategory" />
+          <NavigationProperty Name="User" Relationship="MyWalletModel.FK_Expenses_User" FromRole="Expens" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Expenses_BankAccounts">
+          <End Type="MyWalletModel.BankAccount" Role="BankAccount" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MyWalletModel.Expense" Role="Expens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expens">
+              <PropertyRef Name="BankAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ExpenseCategories">
+          <End Type="MyWalletModel.ExpenseCategory" Role="ExpenseCategory" Multiplicity="1" />
+          <End Type="MyWalletModel.Expense" Role="Expens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expens">
+              <PropertyRef Name="ExpenseCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_User">
+          <End Type="MyWalletModel.User" Role="User" Multiplicity="1" />
+          <End Type="MyWalletModel.Expense" Role="Expens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expens">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -617,6 +765,27 @@
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Ammount" ColumnName="Ammount" />
                 <ScalarProperty Name="IncomeCategoryId" ColumnName="IncomeCategoryId" />
+                <ScalarProperty Name="BankAccountId" ColumnName="BankAccountId" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseCategories">
+            <EntityTypeMapping TypeName="MyWalletModel.ExpenseCategory">
+              <MappingFragment StoreEntitySet="ExpenseCategories">
+                <ScalarProperty Name="ExpenseCategoryName" ColumnName="ExpenseCategoryName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenses">
+            <EntityTypeMapping TypeName="MyWalletModel.Expense">
+              <MappingFragment StoreEntitySet="Expenses">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+                <ScalarProperty Name="ExpenseCategoryId" ColumnName="ExpenseCategoryId" />
                 <ScalarProperty Name="BankAccountId" ColumnName="BankAccountId" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

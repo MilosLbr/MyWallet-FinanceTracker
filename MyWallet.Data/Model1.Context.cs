@@ -35,5 +35,7 @@ namespace MyWallet.Data
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
+        public virtual DbSet<ExpenseCategory> ExpenseCategories { get; set; }
+        public virtual DbSet<Expense> Expenses { get; set; }
     }
 }

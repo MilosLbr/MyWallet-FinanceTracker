@@ -61,6 +61,11 @@ namespace MyWallet.Services.Implementation
             return await Entities.SingleOrDefaultAsync(predicate);
         }
 
+        public void Attach(TEntity entity)
+        {
+            Entities.Attach(entity);
+        }
+
         public void Update(TEntity entity)
         {
             throw new NotImplementedException();

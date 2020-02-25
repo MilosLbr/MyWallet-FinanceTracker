@@ -27,7 +27,7 @@ namespace MyWallet.Services.Implementation
 
         public async Task<User> GetUserData(long userId)
         {
-            var user = await DbContext.Users.Include(u => u.BankAccounts).Include(us => us.Incomes).FirstOrDefaultAsync(u => u.Id == userId);
+            var user = await DbContext.Users.Include("BankAccounts").Include("Incomes.IncomeCategory").Include("Expenses.ExpenseCategory").FirstOrDefaultAsync(u => u.Id == userId);
 
             return user;
         }

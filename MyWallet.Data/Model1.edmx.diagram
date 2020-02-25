@@ -5,23 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="59b765bdad254f50a4021182c82f8b11" Name="Diagram1">
-        <EntityTypeShape EntityType="MyWalletModel.C__MigrationHistory" Width="1.5" PointX="0.5" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyWalletModel.Value" Width="1.5" PointX="4.375" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyWalletModel.BankAccount" Width="1.5" PointX="6.125" PointY="3.625" />
+        <EntityTypeShape EntityType="MyWalletModel.C__MigrationHistory" Width="1.5" PointX="0.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWalletModel.Value" Width="1.5" PointX="2.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWalletModel.BankAccount" Width="1.5" PointX="6.625" PointY="3.875" />
         <EntityTypeShape EntityType="MyWalletModel.IncomeCategory" Width="1.5" PointX="9.5" PointY="2.375" />
         <EntityTypeShape EntityType="MyWalletModel.Role" Width="1.5" PointX="0.5" PointY="1.75" />
-        <EntityTypeShape EntityType="MyWalletModel.sysdiagram" Width="1.5" PointX="2.5" PointY="8.25" />
-        <EntityTypeShape EntityType="MyWalletModel.User" Width="1.5" PointX="3.75" PointY="2" />
+        <EntityTypeShape EntityType="MyWalletModel.sysdiagram" Width="1.5" PointX="0.5" PointY="8.375" />
+        <EntityTypeShape EntityType="MyWalletModel.User" Width="1.5" PointX="3.75" PointY="2.625" />
         <EntityTypeShape EntityType="MyWalletModel.UserClaim" Width="1.5" PointX="0.5" PointY="3.625" />
-        <EntityTypeShape EntityType="MyWalletModel.UserLogin" Width="1.5" PointX="1.375" PointY="6" />
+        <EntityTypeShape EntityType="MyWalletModel.UserLogin" Width="1.5" PointX="0.5" PointY="6" />
         <AssociationConnector Association="MyWalletModel.FK_BankAccounts_User" />
         <AssociationConnector Association="MyWalletModel.FK_dbo_UserClaim_dbo_User_UserId" />
         <AssociationConnector Association="MyWalletModel.FK_dbo_UserLogin_dbo_User_UserId" />
         <AssociationConnector Association="MyWalletModel.UserRole" />
-        <EntityTypeShape EntityType="MyWalletModel.Income" Width="1.5" PointX="7.25" PointY="6.375" />
+        <EntityTypeShape EntityType="MyWalletModel.Income" Width="1.5" PointX="6.375" PointY="0.5" />
         <AssociationConnector Association="MyWalletModel.FK_Incomes_BankAccounts" />
         <AssociationConnector Association="MyWalletModel.FK_Incomes_IncomeCategories" />
         <AssociationConnector Association="MyWalletModel.FK_Incomes_User" />
+        <EntityTypeShape EntityType="MyWalletModel.ExpenseCategory" Width="1.5" PointX="9.5" PointY="6.75" />
+        <EntityTypeShape EntityType="MyWalletModel.Expense" Width="1.5" PointX="6.5" PointY="6.625" />
+        <AssociationConnector Association="MyWalletModel.FK_Expenses_BankAccounts" />
+        <AssociationConnector Association="MyWalletModel.FK_Expenses_ExpenseCategories" />
+        <AssociationConnector Association="MyWalletModel.FK_Expenses_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

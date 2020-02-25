@@ -85,12 +85,21 @@
     </Compile>
     <Compile Include="DTO\BankAccountCreateDto.cs" />
     <Compile Include="DTO\BankAccountForListDto.cs" />
+    <Compile Include="DTO\ExpenseCategoryDto.cs" />
+    <Compile Include="DTO\ExpenseForCreateDto.cs" />
+    <Compile Include="DTO\ExpensesForListDto.cs" />
     <Compile Include="DTO\IncomeCategoryDto.cs" />
     <Compile Include="DTO\IncomeForCreateDto.cs" />
     <Compile Include="DTO\IncomeForListDto.cs" />
     <Compile Include="DTO\UserForListDto.cs" />
     <Compile Include="DTO\UserForLoginDto.cs" />
     <Compile Include="DTO\ValueDto.cs" />
+    <Compile Include="Expense.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenseCategory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Income.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
