@@ -47,7 +47,7 @@ namespace MyWallet2.ControlersApi
                 return Unauthorized();
 
             var bankAccountId = incomeForCreateDto.BankAccountId;
-            var userFromDb = await _unitOfWork.Users.GetUserData(userId);
+            var userFromDb = await _unitOfWork.Users.GetUserAndBankAccounts(userId);
 
             if (!userFromDb.BankAccounts.Any(b => b.Id == bankAccountId))
                 return BadRequest("Current User doesn't own this account!");

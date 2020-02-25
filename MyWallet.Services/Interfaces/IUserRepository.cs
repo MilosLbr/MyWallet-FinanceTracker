@@ -10,5 +10,6 @@ namespace MyWallet.Services.Interfaces
     public interface IUsersRepository : IRepository<User>
     {
         Task<User> GetUserData(long userId);
+        Task<User> GetUserAndBankAccounts(long userId);
     }
 }

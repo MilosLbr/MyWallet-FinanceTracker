@@ -18,6 +18,13 @@ namespace MyWallet.Services.Implementation
 
         public MyWalletContext DbContext { get { return _context as MyWalletContext; } }
 
+        public async Task<User> GetUserAndBankAccounts(long userId)
+        {
+            var user = await DbContext.Users.Include(u => u.BankAccounts).FirstOrDefaultAsync(u => u.Id == userId);
+
+            return user;
+        }
+
         public async Task<User> GetUserData(long userId)
         {
             var user = await DbContext.Users.Include(u => u.BankAccounts).Include(us => us.Incomes).FirstOrDefaultAsync(u => u.Id == userId);
