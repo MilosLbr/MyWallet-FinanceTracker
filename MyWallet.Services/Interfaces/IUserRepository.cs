@@ -1,4 +1,5 @@
 ﻿using MyWallet.Data;
+using MyWallet.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace MyWallet.Services.Interfaces
     {
         Task<User> GetUserData(long userId);
         Task<User> GetUserAndBankAccounts(long userId);
+        Task<IEnumerable<TransactionForListDto>> GetAllUsersTransactions(long userId);
     }
 }

@@ -66,5 +66,24 @@ namespace MyWallet2.ControlersApi
             return Ok(userDetails);
         }
 
+        [HttpGet]
+        [Route("{userId}/getUsersTransactions")]
+        public async Task<IHttpActionResult> GetUsersTransactions(long userId)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            var usersTransactions = await _unitOfWork.Users.GetAllUsersTransactions(userId);
+
+            return Ok(usersTransactions);
+        }
+
+        private bool IsUserAuthorized(long userId)
+        {
+            if (userId != long.Parse(User.Identity.GetUserId()))
+                return false;
+
+            return true;
+        }
     }
 }
