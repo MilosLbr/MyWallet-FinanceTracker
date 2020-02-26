@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './_guards/auth-guard.service';
+import { AccountDetailsComponent } from './dashboard/account-details/account-details.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AuthGuard } from './_guards/auth-guard.service';
       LoginComponent,
       IncomesComponent,
       ExpensesComponent,
-      DashboardComponent
+      DashboardComponent,
+      AccountDetailsComponent
    ],
    imports: [
       BrowserModule,

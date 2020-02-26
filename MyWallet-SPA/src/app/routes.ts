@@ -10,5 +10,5 @@ export const appRoutes : Routes= [
     {path: "incomes", canActivate:[AuthGuard],component: IncomesComponent},
     {path: "expenses", canActivate:[AuthGuard], component: ExpensesComponent},
     {path: "dashboard", canActivate:[AuthGuard], component: DashboardComponent},
-    {path : '**', redirectTo: '', pathMatch: 'full'}
+    {path : '**', redirectTo: 'dashboard', pathMatch: 'full'}
 ]
