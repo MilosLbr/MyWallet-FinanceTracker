@@ -42,6 +42,7 @@
           <Property Name="Ammount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="128" />
           <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="NewBallance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="IncomeCategories">
           <Key>
@@ -61,6 +62,7 @@
           <Property Name="Ammount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="128" />
           <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="NewBallance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -552,6 +554,7 @@
           <NavigationProperty Name="BankAccount" Relationship="MyWalletModel.FK_Incomes_BankAccounts" FromRole="Income" ToRole="BankAccount" />
           <NavigationProperty Name="IncomeCategory" Relationship="MyWalletModel.FK_Incomes_IncomeCategories" FromRole="Income" ToRole="IncomeCategory" />
           <NavigationProperty Name="User" Relationship="MyWalletModel.FK_Incomes_User" FromRole="Income" ToRole="User" />
+          <Property Name="NewBallance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_Incomes_BankAccounts">
           <End Type="MyWalletModel.BankAccount" Role="BankAccount" Multiplicity="1" />
@@ -613,6 +616,7 @@
           <NavigationProperty Name="BankAccount" Relationship="MyWalletModel.FK_Expenses_BankAccounts" FromRole="Expens" ToRole="BankAccount" />
           <NavigationProperty Name="ExpenseCategory" Relationship="MyWalletModel.FK_Expenses_ExpenseCategories" FromRole="Expens" ToRole="ExpenseCategory" />
           <NavigationProperty Name="User" Relationship="MyWalletModel.FK_Expenses_User" FromRole="Expens" ToRole="User" />
+          <Property Name="NewBallance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_Expenses_BankAccounts">
           <End Type="MyWalletModel.BankAccount" Role="BankAccount" Multiplicity="1">
@@ -761,6 +765,7 @@
           <EntitySetMapping Name="Incomes">
             <EntityTypeMapping TypeName="MyWalletModel.Income">
               <MappingFragment StoreEntitySet="Incomes">
+                <ScalarProperty Name="NewBallance" ColumnName="NewBallance" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Ammount" ColumnName="Ammount" />
@@ -782,6 +787,7 @@
           <EntitySetMapping Name="Expenses">
             <EntityTypeMapping TypeName="MyWalletModel.Expense">
               <MappingFragment StoreEntitySet="Expenses">
+                <ScalarProperty Name="NewBallance" ColumnName="NewBallance" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Ammount" ColumnName="Ammount" />

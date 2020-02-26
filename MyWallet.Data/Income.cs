@@ -21,6 +21,7 @@ namespace MyWallet.Data
         public decimal Ammount { get; set; }
         public string Comment { get; set; }
         public long UserId { get; set; }
+        public decimal NewBallance { get; set; }
     
         public virtual BankAccount BankAccount { get; set; }
         public virtual IncomeCategory IncomeCategory { get; set; }

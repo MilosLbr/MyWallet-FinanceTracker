@@ -13,6 +13,7 @@ namespace MyWallet.Data.DTO
         public decimal Ammount { get; set; }
         public string Comment { get; set; }
         public long UserId { get; set; }
+        public decimal NewBallance { get; set; }
 
         public virtual BankAccountForListDto BankAccount { get; set; }
         public virtual ExpenseCategoryDto ExpenseCategory { get; set; }

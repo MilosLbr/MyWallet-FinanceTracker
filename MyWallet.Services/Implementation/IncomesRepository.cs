@@ -27,6 +27,7 @@ namespace MyWallet.Services.Implementation
             incomeForCreateDto.UserId = userId;
 
             var incomeForDb = mapper.Map<Income>(incomeForCreateDto);
+            incomeForDb.NewBallance = bankAccountToUpdate.Ballance;
 
             Add(incomeForDb);
 

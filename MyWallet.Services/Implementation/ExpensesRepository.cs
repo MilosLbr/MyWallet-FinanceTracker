@@ -29,7 +29,8 @@ namespace MyWallet.Services.Implementation
 
             expenseForCreateDto.UserId = userId;
 
-            var expenseForDb = mapper.Map<Expense>(expenseForCreateDto);            
+            var expenseForDb = mapper.Map<Expense>(expenseForCreateDto);
+            expenseForDb.NewBallance = bankAccountToUpdate.Ballance;
 
             Add(expenseForDb);
 
