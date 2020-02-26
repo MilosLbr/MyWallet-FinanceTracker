@@ -55,6 +55,7 @@
     <Compile Include="Implementation\BankAccountsRepository.cs" />
     <Compile Include="Implementation\ExpenseCategoriesRepository.cs" />
     <Compile Include="Implementation\ExpensesRepository.cs" />
+    <Compile Include="Implementation\IncomeCategoriesRepository.cs" />
     <Compile Include="Implementation\IncomesRepository.cs" />
     <Compile Include="Implementation\Repository.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Interfaces\IBankAccountsRepository.cs" />
     <Compile Include="Interfaces\IExpenseCategoriesRepository.cs" />
     <Compile Include="Interfaces\IExpensesRepository.cs" />
+    <Compile Include="Interfaces\IIncomeCategoriesRepository.cs" />
     <Compile Include="Interfaces\IIncomesRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />

@@ -28,7 +28,7 @@ namespace MyWallet.Services.Implementation
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            Entities.AddRange(entities);
         }
 
         public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
@@ -36,9 +36,9 @@ namespace MyWallet.Services.Implementation
             return Entities.Where(predicate);
         }
 
-        public Task<TEntity> Get(int Id)
+        public async Task<TEntity> Get(int Id)
         {
-            throw new NotImplementedException();
+            return await Entities.FindAsync(Id);
         }
 
         public async Task<IEnumerable<TEntity>> GetAll()
@@ -48,12 +48,12 @@ namespace MyWallet.Services.Implementation
 
         public void Remove(TEntity entity)
         {
-            throw new NotImplementedException();
+            Entities.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            Entities.RemoveRange(entities);
         }
 
         public async Task<TEntity> SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
@@ -61,14 +61,10 @@ namespace MyWallet.Services.Implementation
             return await Entities.SingleOrDefaultAsync(predicate);
         }
 
-        public void Attach(TEntity entity)
-        {
-            Entities.Attach(entity);
-        }
 
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

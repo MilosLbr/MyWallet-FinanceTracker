@@ -21,7 +21,6 @@ namespace MyWallet.Services.Interfaces
 
         // update
         void Update(TEntity entity);
-        void Attach(TEntity entity);
 
         // remove
         void Remove(TEntity entity);

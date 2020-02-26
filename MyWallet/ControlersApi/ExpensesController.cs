@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
 using Microsoft.AspNet.Identity;
+using MyWallet.Data;
 using MyWallet.Data.DTO;
 using MyWallet.Services.Interfaces;
 using System;
@@ -55,8 +56,7 @@ namespace MyWallet2.ControlersApi
             var expenseForDb = _unitOfWork.Expenses.SubtractMoneyFromBankAccount(userId, userFromDb, expenseForCreateDto, _mapper);
 
             if(await _unitOfWork.Complete() > 0)
-            {
-               
+            {               
                 var expensesList = _mapper.Map<ExpensesForListDto>(expenseForDb);
                 
                 return Created(new Uri(Request.RequestUri + "/" + expenseForDb.Id), expensesList);
@@ -64,6 +64,7 @@ namespace MyWallet2.ControlersApi
 
             return BadRequest("An error happened while creating new expense!");
         }
+        
 
         private bool IsUserAuthorized(long userId)
         {

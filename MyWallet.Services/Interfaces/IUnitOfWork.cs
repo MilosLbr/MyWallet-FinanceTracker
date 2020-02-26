@@ -14,6 +14,7 @@ namespace MyWallet.Services.Interfaces
         IUsersRepository Users { get; }
         IExpensesRepository Expenses { get; }
         IExpenseCategoriesRepository ExpenseCategories { get; }
+        IIncomeCategoriesRepository IncomeCategories { get; }
         Task<int> Complete();
 
     }
