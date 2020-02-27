@@ -13,5 +13,6 @@ namespace MyWallet.Services.Interfaces
         Task<User> GetUserData(long userId);
         Task<User> GetUserAndBankAccounts(long userId);
         Task<IEnumerable<TransactionForListDto>> GetAllUsersTransactions(long userId);
+        Task<IEnumerable<TransactionForListDto>> GetTransactionsOnBankAccount(long userId, int bankAccountId);
     }
 }

@@ -59,5 +59,35 @@ namespace MyWallet.Services.Implementation
 
             return allTransactions;
         }
+
+        public async Task<IEnumerable<TransactionForListDto>> GetTransactionsOnBankAccount(long userId, int bankAccountId)
+        {
+            var usersIncomes = await DbContext.Incomes.Include("IncomeCategory").Where(i => i.UserId == userId && i.BankAccountId == bankAccountId).Select(i => new TransactionForListDto()
+            {
+                Ammount = i.Ammount,
+                DateAdded = i.DateAdded,
+                Comment = i.Comment,
+                NewBallance = i.NewBallance,
+                TransactionType = "Income",
+                CategoryName = i.IncomeCategory.IncomeCategoryName,
+                BankAccountId = bankAccountId
+
+            }).ToListAsync();
+
+            var usersExpenses = await DbContext.Expenses.Include("ExpenseCategory").Where(e => e.UserId == userId && e.BankAccountId == bankAccountId).Select(e => new TransactionForListDto()
+            {
+                Ammount = e.Ammount,
+                DateAdded = e.DateAdded,
+                Comment = e.Comment,
+                NewBallance = e.NewBallance,
+                TransactionType = "Expense",
+                CategoryName = e.ExpenseCategory.ExpenseCategoryName,
+                BankAccountId = bankAccountId
+            }).ToListAsync();
+
+            var allTransactions = usersIncomes.Concat(usersExpenses).OrderByDescending(t => t.DateAdded).ToList();
+
+            return allTransactions;
+        }
     }
 }

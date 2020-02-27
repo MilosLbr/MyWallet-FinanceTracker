@@ -15,5 +15,6 @@ namespace MyWallet.Data.DTO
         public decimal NewBallance { get; set; }
         public string TransactionType { get; set; }
         public string CategoryName { get; set; }
+        public int BankAccountId { get; set; }
     }
 }

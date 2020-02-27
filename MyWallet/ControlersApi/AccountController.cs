@@ -78,6 +78,24 @@ namespace MyWallet2.ControlersApi
             return Ok(usersTransactions);
         }
 
+        [HttpGet]
+        [Route("{userId}/getUsersTransactions/{bankAccountId}")]
+        public async Task<IHttpActionResult> GetTransactionsOnBankAccount(long userId, int bankAccountId)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            var userAndAccounts = await _unitOfWork.Users.GetUserAndBankAccounts(userId);
+
+            if(!userAndAccounts.BankAccounts.Any(b => b.Id == bankAccountId))
+                return BadRequest("Current User doesn't own this account!");
+
+
+            var transactionsOnBankAccount = await _unitOfWork.Users.GetTransactionsOnBankAccount(userId, bankAccountId);
+
+            return Ok(transactionsOnBankAccount);
+        }
+
         private bool IsUserAuthorized(long userId)
         {
             if (userId != long.Parse(User.Identity.GetUserId()))
