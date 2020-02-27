@@ -1,3 +1,6 @@
-<p>
-  account-details works!
-</p>
+<ul>
+  <li *ngFor="let transaction of transactions">
+    <span>{{transaction.categoryName}} </span>  <span> {{transaction.comment}} </span>  <span> {{transaction.ammount}}</span>
+
+  </li>
+</ul>

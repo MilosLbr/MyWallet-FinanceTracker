@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,15 @@ import { appRoutes } from './routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './_guards/auth-guard.service';
 import { AccountDetailsComponent } from './dashboard/account-details/account-details.component';
+import { UserService } from './_services/user.service';
 
+
+export function jwtOptionsFactory() {
+   return {
+     tokenGetter: () => sessionStorage.getItem("token"),
+     whitelistedDomains: ['localhost:44301']
+   };
+};
 
 @NgModule({
    declarations: [
@@ -38,13 +47,20 @@ import { AccountDetailsComponent } from './dashboard/account-details/account-det
       FormsModule,
       HttpClientModule,
       AppRoutingModule,
+      JwtModule.forRoot({
+         jwtOptionsProvider:{
+            provide: JWT_OPTIONS,
+            useFactory: jwtOptionsFactory
+         }
+      }),
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes)
    ],
    providers: [
       AuthService,
       AlertifyService,
-      AuthGuard
+      AuthGuard,
+      UserService
    ],
    bootstrap: [
       AppComponent

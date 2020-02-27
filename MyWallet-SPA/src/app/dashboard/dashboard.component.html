@@ -10,13 +10,16 @@
        <button 
        type="button" 
        class="list-group-item list-group-item-action" 
-       (click)="showTransactionsForAccount()"
-       *ngFor="let bankAccount of bankAccounts"> 
+       
+       *ngFor="let bankAccount of bankAccounts;let i = index"
+       [attr.data-bankAccountId]="i"
+       (click)="showTransactionsForAccount(bankAccount.id)"
+       > 
            <span>{{bankAccount.accountName}}</span>: <span>{{bankAccount.ballance}}</span>
        </button>
     </ul>
 </div>
 
-<div *ngIf="showAccountDetails" class="container accountDetailsContainer">
-    <app-account-details></app-account-details>
+<div *ngIf="bankAccountTransactions" class="container accountDetailsContainer">
+    <app-account-details [transactions]="bankAccountTransactions"></app-account-details>
 </div>

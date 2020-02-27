@@ -16,7 +16,6 @@ export class NavComponent implements OnInit {
   }
 
   loggedIn(){
-    console.log(this.authService.decodedToken)
     return this.authService.loggedIn();
   }
 

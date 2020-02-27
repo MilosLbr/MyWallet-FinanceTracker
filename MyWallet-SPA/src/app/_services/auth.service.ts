@@ -12,7 +12,14 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken : any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    let storedToken = sessionStorage.getItem("token");
+
+    if(storedToken){
+      this.decodedToken = this.jwtHelper.decodeToken(storedToken);
+      sessionStorage.setItem("username", this.decodedToken.unique_name);
+    }
+  }
   
 
   registerUser(username:string, email: string, password:string){

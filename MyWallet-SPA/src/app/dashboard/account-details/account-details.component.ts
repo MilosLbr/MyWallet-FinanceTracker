@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Transaction } from 'src/app/_models/transaction';
 
 @Component({
   selector: 'app-account-details',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-details.component.css']
 })
 export class AccountDetailsComponent implements OnInit {
-
+  @Input() transactions: Transaction[];
   constructor() { }
 
   ngOnInit() {

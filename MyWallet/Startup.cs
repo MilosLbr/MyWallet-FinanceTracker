@@ -9,11 +9,10 @@ using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using MyWallet.Data.MyIdentitySample;
-//using MyWallet.Data.MyIdentityConfiguration;
 using MyWallet2.AutoMapperProfiles;
 using MyWallet2.Providers;
 using Owin;
-using Unity.WebApi;
+using Microsoft.Owin.Cors;
 
 [assembly: OwinStartup(typeof(MyWallet2.Startup))]
 
@@ -28,7 +27,7 @@ namespace MyWallet2
             ConfigureOAuth(app);
             MapperConfig.RegisterProfiles();
             WebApiConfig.Register(config);            
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
 
