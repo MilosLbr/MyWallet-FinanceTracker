@@ -21,6 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './_guards/auth-guard.service';
 import { AccountDetailsComponent } from './dashboard/account-details/account-details.component';
 import { UserService } from './_services/user.service';
+import { DatePipe } from '@angular/common';
 
 
 export function jwtOptionsFactory() {
@@ -41,6 +42,7 @@ export function jwtOptionsFactory() {
       ExpensesComponent,
       DashboardComponent,
       AccountDetailsComponent
+      
    ],
    imports: [
       BrowserModule,
@@ -55,12 +57,14 @@ export function jwtOptionsFactory() {
       }),
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes)
+      
    ],
    providers: [
       AuthService,
       AlertifyService,
       AuthGuard,
-      UserService
+      UserService,
+      DatePipe
    ],
    bootstrap: [
       AppComponent

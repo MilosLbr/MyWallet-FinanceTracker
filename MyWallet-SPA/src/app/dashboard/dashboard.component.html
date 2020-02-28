@@ -3,8 +3,8 @@
 </div>
 
 
-<div class="container myAccountsContainer">
-    <h4>My accounts</h4>
+<div class="container myAccountsContainer mb-3">
+    <h4 >My accounts</h4>
 
     <ul class="list-group">
        <button 
@@ -21,5 +21,10 @@
 </div>
 
 <div *ngIf="bankAccountTransactions" class="container accountDetailsContainer">
+    <h4 class="text-center row" style="width: 90%;">
+        <div class="col-11">Transactions on Bank account - {{this.selectedBankAccountName}} </div>
+        <button class="col-1 btn btn-info"><i class="fas fa-chart-pie"></i></button>
+    </h4>
+
     <app-account-details [transactions]="bankAccountTransactions"></app-account-details>
 </div>
