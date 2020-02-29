@@ -1,3 +1,38 @@
-<p>
-  incomes works!
-</p>
+<form  #incomeForm="ngForm" (ngSubmit)="submitIncome()">
+  <div class="form-group">
+    <label class="control-label" for="bankAccount">Choose your bank account:</label>
+    
+    <select 
+    class="form-control" 
+    name="bankAccount" 
+    id="bankAccount" 
+    [(ngModel)]="selectedAccountId" required >
+
+      <option  *ngFor="let account of bankAccounts; let i = index" [ngValue]='account.id' >{{account.accountName}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="incomeCategory">Choose income category:</label>
+    
+    <select 
+    class="form-control" 
+    name="incomeCategory" 
+    id="incomeCategory" 
+    [(ngModel)]="selectedCategoryId" 
+    required
+    >
+
+      <option  *ngFor="let category of incomeCategories; let i = index" 
+      [ngValue]='category.id'
+      >{{category.incomeCategoryName}}</option>
+
+    </select>
+  </div>
+  
+
+  <button 
+  type="submit" 
+  class="btn btn-success"
+  [disabled]="!incomeForm.valid">Submit</button>
+</form>

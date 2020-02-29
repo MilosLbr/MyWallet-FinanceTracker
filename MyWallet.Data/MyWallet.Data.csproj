@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="DTO\BankAccountCreateDto.cs" />
     <Compile Include="DTO\BankAccountForListDto.cs" />
+    <Compile Include="DTO\BankAccountsAndCategories.cs" />
     <Compile Include="DTO\ExpenseCategoryDto.cs" />
     <Compile Include="DTO\ExpenseForCreateDto.cs" />
     <Compile Include="DTO\ExpensesForListDto.cs" />

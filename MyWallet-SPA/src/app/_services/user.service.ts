@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { AccountsAndCategories } from '../_models/accountsAndCategories';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,10 @@ export class UserService {
 
   getBankAccountListForUser(userId:number){
     return this.http.get(this.baseUrl + "users/" + userId + "/bankAccounts");
+  }
+
+  getBankAccountsAndCategories(userId:number) : Observable<AccountsAndCategories>{
+    return this.http.get<AccountsAndCategories>(this.baseUrl + "users/" + userId + "/bankAccounts/accountsAndCategories");
   }
 
   getTransactionsOnBankAccount(userId: number, bankAccountId: number){

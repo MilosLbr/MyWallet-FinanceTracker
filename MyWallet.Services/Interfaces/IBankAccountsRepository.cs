@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace MyWallet.Services.Interfaces
 {
     public interface IBankAccountsRepository : IRepository<BankAccount>
-    {       
+    {
+        Task<BankAccountsAndCategories> getBankAccountsAndTransactionCategories(long userId);
     }
 }

@@ -43,6 +43,19 @@ namespace MyWallet2.ControlersApi
 
         }
 
+        [HttpGet]
+        [Route("accountsAndCategories")]
+        public async Task<IHttpActionResult> GetBankAccountsAndCategoriesForUser(long userId)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            var bankAccounts = await _unitOfWork.BankAccounts.getBankAccountsAndTransactionCategories(userId);
+
+            return Ok(bankAccounts);
+
+        }
+
         [HttpPost]
         [Route("")]
         public async Task<IHttpActionResult> CreateAccount([FromBody]BankAccountCreateDto bankAccountCreateDto, long userId)
