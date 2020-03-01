@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { BankAccount } from 'src/app/_models/bankAccount';
 import { IncomeCategory } from 'src/app/_models/incomeCategory';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +15,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 })
 export class IncomeCreateComponent implements OnInit {
   @ViewChild("incomeForm", {static: false}) incomeForm: NgForm;
+  @Output() outputToParent = new EventEmitter<boolean>();
   bankAccounts : BankAccount[];
   incomeCategories: IncomeCategory[];
   selectedAccountId: number = null;
@@ -36,6 +37,7 @@ export class IncomeCreateComponent implements OnInit {
     });
   }
 
+  
 
   submitIncome(){
     
@@ -51,6 +53,7 @@ export class IncomeCreateComponent implements OnInit {
          );
 
         this.alertify.success("Successfully posted!");
+        this.outputToParent.emit(true);
       }, error => {
         this.alertify.error("An error happened while posting new income!");
       })

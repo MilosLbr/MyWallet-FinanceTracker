@@ -1,3 +1,6 @@
+import { IncomeCategory } from './incomeCategory';
+import { BankAccount } from './bankAccount';
+
 export interface Income{
     id?: number,
     dateAdded?: Date,
@@ -6,5 +9,7 @@ export interface Income{
     ammount: number,
     comment?: string,
     userId?: number,
-    newBallance?: number
+    newBallance?: number,
+    incomeCategory?: IncomeCategory,
+    bankAccount?: BankAccount
 }

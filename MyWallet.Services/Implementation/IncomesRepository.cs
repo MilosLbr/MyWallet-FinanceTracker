@@ -33,5 +33,16 @@ namespace MyWallet.Services.Implementation
 
             return incomeForDb;
         }
+
+        public async Task DeleteIncomeRecord(int incomeId)
+        {
+            var incomeFromDb = await Get(incomeId);
+            var bankAccountFromDb = await DbContext.BankAccounts.FindAsync(incomeFromDb.BankAccountId);
+
+            var ammount = incomeFromDb.Ammount;
+            bankAccountFromDb.Ballance -= ammount;
+
+            Remove(incomeFromDb);
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace MyWallet2.ControlersApi
             if (!IsUserAuthorized(userId))
                 return Unauthorized();
 
-            var incomeRecordsFromDb = await _unitOfWork.Incomes.Find(i => i.UserId == userId).ToListAsync();
+            var incomeRecordsFromDb = await _unitOfWork.Incomes.Find(i => i.UserId == userId).OrderByDescending(i => i.DateAdded).ToListAsync();
 
             var incomesList = _mapper.Map<List<IncomeForListDto>>(incomeRecordsFromDb);
             return Ok(incomesList);
@@ -61,6 +61,23 @@ namespace MyWallet2.ControlersApi
             }
 
             return BadRequest("An error happened while creating new income!");
+        }
+
+        [HttpDelete]
+        [Route("{incomeId}")]
+        public async Task<IHttpActionResult> DeleteIncomeRecord(long userId, int incomeId)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            await _unitOfWork.Incomes.DeleteIncomeRecord(incomeId);
+
+            if(await _unitOfWork.Complete() > 0)
+            { 
+                return Ok("Deleted!");
+            }
+
+            return BadRequest("An error happened while deleting income record!");
         }
 
         private bool IsUserAuthorized(long userId)

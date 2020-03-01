@@ -24,6 +24,7 @@ import { AccountDetailsComponent } from './dashboard/account-details/account-det
 import { UserService } from './_services/user.service';
 import { IncomesResolver } from './_resolvers/incomes.resolver';
 import { IncomeCreateComponent } from './incomes/income-create/income-create.component';
+import { IncomeListComponent } from './incomes/income-list/income-list.component';
 
 
 export function jwtOptionsFactory() {
@@ -44,7 +45,8 @@ export function jwtOptionsFactory() {
       ExpensesComponent,
       DashboardComponent,
       AccountDetailsComponent,
-      IncomeCreateComponent
+      IncomeCreateComponent,
+      IncomeListComponent
       
    ],
    imports: [

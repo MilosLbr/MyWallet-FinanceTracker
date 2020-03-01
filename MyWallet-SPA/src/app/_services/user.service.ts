@@ -30,4 +30,12 @@ export class UserService {
     return this.http.post(this.baseUrl + "users/"+ userId +"/incomes", income);
   }
 
+  getIncomeRecordsForUser(userId: number){
+    return this.http.get(this.baseUrl + "users/"+ userId +"/incomes");
+  }
+
+  deleteIncomeRecord(userId: number, incomeRecordId: number){
+    return this.http.delete(this.baseUrl + "users/"+ userId+ "/incomes/" + incomeRecordId);
+  }
+
 }

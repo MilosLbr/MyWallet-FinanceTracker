@@ -1,0 +1,35 @@
+<h4 class="m-3 text-center">Your income records</h4>
+
+<div class="container text-center">  
+
+  <div *ngFor="let income of listOfIncomes" class=" row no-gutters mb-1 align-items-center income-row">
+
+    <div class="col-1 bg-dark text-white p-2">
+      {{income.dateAdded | date:"dd.MM.yyyy"}}
+    </div>
+    <div class="col-1">
+      <button class="btn btn-info"><i class="fas fa-pen"></i></button>
+    </div>
+    <div class="col-2">      
+      {{income.incomeCategory.incomeCategoryName}}
+    </div>
+
+    <div class="col-3">
+      {{income.bankAccount.accountName}}
+    </div>
+
+    <div class="col-2 text-success">
+      {{income.ammount}}
+    </div>
+
+    <div class="col-2">
+      {{income.comment}}
+    </div>
+
+    <div class="col-1">
+      <button (click)="deleteIncomeRecord(income.id, $event)" class="btn btn-danger">X</button>
+    </div>
+
+  </div>
+
+</div>
