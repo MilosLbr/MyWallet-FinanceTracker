@@ -6,8 +6,8 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
@@ -23,6 +23,7 @@ import { AuthGuard } from './_guards/auth-guard.service';
 import { AccountDetailsComponent } from './dashboard/account-details/account-details.component';
 import { UserService } from './_services/user.service';
 import { IncomesResolver } from './_resolvers/incomes.resolver';
+import { IncomeCreateComponent } from './incomes/income-create/income-create.component';
 
 
 export function jwtOptionsFactory() {
@@ -42,7 +43,8 @@ export function jwtOptionsFactory() {
       IncomesComponent,
       ExpensesComponent,
       DashboardComponent,
-      AccountDetailsComponent
+      AccountDetailsComponent,
+      IncomeCreateComponent
       
    ],
    imports: [

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AccountsAndCategories } from '../_models/accountsAndCategories';
+import { Income } from '../_models/income';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class UserService {
 
   getTransactionsOnBankAccount(userId: number, bankAccountId: number){
     return this.http.get(this.baseUrl +"account/" + userId + "/getUsersTransactions/"+ bankAccountId);
+  }
+
+  postNewIncomeRecord(income: Income, userId: number){
+    return this.http.post(this.baseUrl + "users/"+ userId +"/incomes", income);
   }
 
 }

@@ -1,0 +1,48 @@
+<form class="mt-3 p-4" style="width: 90%; margin: auto;"  #incomeForm="ngForm" (ngSubmit)="submitIncome()">
+  <div class="form-group">
+    <label class="control-label" for="bankAccount">Bank account:</label>
+    
+    <select 
+    class="form-control" 
+    name="bankAccountId" 
+    id="bankAccount" 
+    [(ngModel)]="selectedAccountId" required >
+
+      <option  *ngFor="let account of bankAccounts; let i = index" [ngValue]='account.id' >{{account.accountName}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label" for="incomeCategory">Income category:</label>
+    
+    <select 
+    class="form-control" 
+    name="incomeCategoryId" 
+    id="incomeCategory" 
+    [(ngModel)]="selectedCategoryId" 
+    required
+    >
+
+      <option  *ngFor="let category of incomeCategories; let i = index" 
+      [ngValue]='category.id'
+      >{{category.incomeCategoryName}}</option>
+
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label" for="ammount">Set ammount:</label>
+    <input class="form-control" type="number" name="ammount" id="ammount" min="1" [(ngModel)]="ammount" required>
+  </div>
+
+  <div class="form-group">
+    <label for="comment" class="control-label">Comment:</label>
+    <input class="form-control" type="text" name="comment" id="comment" [(ngModel)]="comment" autocomplete="off">
+  </div>
+  
+
+  <button 
+  type="submit" 
+  class="btn btn-success"
+  [disabled]="!incomeForm.valid">Submit</button>
+</form>
