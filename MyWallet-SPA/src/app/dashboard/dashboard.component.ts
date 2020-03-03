@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { BankAccount } from '../_models/bankAccount';
-import { Transaction } from '../_models/transaction';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { UserService } from '../_services/user.service';
 import { TransactionGroup } from '../_models/transactionGroup';
+import { CreateAccountModalComponent } from './create-account-modal/create-account-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,14 +12,18 @@ import { TransactionGroup } from '../_models/transactionGroup';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  
+  bsModalRef: BsModalRef;
   bankAccounts : BankAccount[];
   bankAccountTransactions: TransactionGroup[];
   selectedBankAccountName: string;
 
-  constructor(public authService: AuthService, private userService: UserService) { }
+  constructor(public authService: AuthService, private userService: UserService, private modalService: BsModalService) { }
 
   ngOnInit() {
+    this.getAllBankAccounts();
+  }
+
+  getAllBankAccounts() {
     this.userService.getBankAccountListForUser(this.authService.decodedToken.nameid).subscribe((data: BankAccount[]) => {
       this.bankAccounts = data;
     })
@@ -30,6 +35,13 @@ export class DashboardComponent implements OnInit {
     this.userService.getTransactionsOnBankAccount(this.authService.decodedToken.nameid, bankAccountId).subscribe((data: TransactionGroup[])=>{
       this.bankAccountTransactions = data;
     })
+  }
+
+  openCreateAccountModal(){
+    this.bsModalRef = this.modalService.show(CreateAccountModalComponent);
+    this.modalService.onHide.subscribe(() => {
+      this.getAllBankAccounts();      
+    });
   }
 
 }

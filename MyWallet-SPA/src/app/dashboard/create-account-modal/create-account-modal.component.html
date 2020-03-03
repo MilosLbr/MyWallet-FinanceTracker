@@ -1,0 +1,41 @@
+<div class="p-2">
+  
+  <div class="row p-1  no-gutters align-items-center justify-content-between">
+    <h4 class="mb-0">Create new Account</h4>
+    <button class="btn" (click)="bsModalRef.hide()">X</button>
+  </div>
+  
+  <hr>
+
+  <form #createAccountForm="ngForm" (submit)="submitForm()">
+    <div class="form-group">
+      <label for="accountName">Account name:</label>
+      <input class="form-control" type="text" 
+      name="accountName" id="accountName" 
+      [(ngModel)]="accountName"
+      #accName ='ngModel'
+      required>
+      <div *ngIf="!accName.valid && accName.touched"  class="alert alert-danger">
+        Account name is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ballance">Initial ballance:</label>
+      <input class="form-control" type="number" 
+      name="ballance" id="ballance"
+      [(ngModel)]="ballance"
+      #accBallance='ngModel'      
+      min="0" required>
+      <div *ngIf="!accBallance.valid && accBallance.touched"  class="alert alert-danger">
+        Initial ballance is required!
+      </div>
+    </div>
+
+    <button class="btn btn-success" [disabled]="!createAccountForm.valid">
+      Create
+    </button>
+
+  </form>
+
+</div>

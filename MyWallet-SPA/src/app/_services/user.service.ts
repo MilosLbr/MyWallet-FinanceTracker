@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AccountsAndCategories } from '../_models/accountsAndCategories';
 import { Income } from '../_models/income';
+import { BankAccountCreate } from '../_models/bankAccountCreate';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,11 @@ export class UserService {
   }
 
   deleteIncomeRecord(userId: number, incomeRecordId: number){
-    return this.http.delete(this.baseUrl + "users/"+ userId+ "/incomes/" + incomeRecordId);
+    return this.http.delete(this.baseUrl + "users/"+ userId + "/incomes/" + incomeRecordId);
+  }
+
+  createBankAccount(userId: number, bankAccount: BankAccountCreate){
+    return this.http.post(this.baseUrl + "users/" + userId + "/bankAccounts", bankAccount)
   }
 
 }

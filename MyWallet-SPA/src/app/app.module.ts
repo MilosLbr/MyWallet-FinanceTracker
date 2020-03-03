@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +28,7 @@ import { UserService } from './_services/user.service';
 import { IncomesResolver } from './_resolvers/incomes.resolver';
 import { IncomeCreateComponent } from './incomes/income-create/income-create.component';
 import { IncomeListComponent } from './incomes/income-list/income-list.component';
+import { CreateAccountModalComponent } from './dashboard/create-account-modal/create-account-modal.component';
 
 
 export function jwtOptionsFactory() {
@@ -46,10 +48,15 @@ export function jwtOptionsFactory() {
       IncomesComponent,
       ExpensesComponent,
       DashboardComponent,
+      CreateAccountModalComponent,
       AccountDetailsComponent,
       IncomeCreateComponent,
       IncomeListComponent
       
+   ],
+   entryComponents:[
+      CreateAccountModalComponent,
+
    ],
    imports: [
       BrowserModule,
@@ -57,6 +64,7 @@ export function jwtOptionsFactory() {
       BsDatepickerModule.forRoot(),
       FormsModule,
       ReactiveFormsModule,
+      ModalModule.forRoot(),
       HttpClientModule,
       AppRoutingModule,
       JwtModule.forRoot({
