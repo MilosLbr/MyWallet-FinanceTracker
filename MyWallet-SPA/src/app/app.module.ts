@@ -7,6 +7,8 @@ import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -51,6 +53,8 @@ export function jwtOptionsFactory() {
    ],
    imports: [
       BrowserModule,
+      BrowserAnimationsModule,
+      BsDatepickerModule.forRoot(),
       FormsModule,
       ReactiveFormsModule,
       HttpClientModule,

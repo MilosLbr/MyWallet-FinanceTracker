@@ -1,5 +1,20 @@
 <form class="mt-3 p-4" style="width: 90%; margin: auto;"  #incomeForm="ngForm" (ngSubmit)="submitIncome()">
   <div class="form-group">
+    <input type="text"
+      placeholder="Select date"
+      class="form-control"
+      bsDatepicker      
+      [(ngModel)]="dateAdded"
+      #selectedDate ="ngModel"
+      name="dateAdded"
+      required      
+      autocomplete="off">
+    <div *ngIf="!selectedDate.valid && selectedDate.touched" class="alert alert-danger">
+        Date is required
+    </div>
+  </div>
+  
+  <div class="form-group">
     <label class="control-label" for="bankAccount">Bank account:</label>
     
     <select 
@@ -32,12 +47,23 @@
 
   <div class="form-group">
     <label class="control-label" for="ammount">Set ammount:</label>
-    <input class="form-control" type="number" name="ammount" id="ammount" min="1" [(ngModel)]="ammount" required>
+    <input 
+    class="form-control" 
+    type="number" name="ammount" 
+    id="ammount" 
+    #selectedAmmount = 'ngModel'
+    min="1" 
+    [(ngModel)]="ammount" 
+    required
+    >
+    <div *ngIf="!selectedAmmount.valid && selectedAmmount.touched" class="alert alert-danger">
+      Ammount is required
+    </div>
   </div>
 
   <div class="form-group">
     <label for="comment" class="control-label">Comment:</label>
-    <input class="form-control" type="text" name="comment" id="comment" [(ngModel)]="comment" autocomplete="off">
+    <input class="form-control" type="text" name="comment" id="comment" [(ngModel)]="comment" autocomplete="off">    
   </div>
   
 

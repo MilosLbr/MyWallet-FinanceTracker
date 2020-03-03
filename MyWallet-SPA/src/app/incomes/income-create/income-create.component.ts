@@ -18,6 +18,7 @@ export class IncomeCreateComponent implements OnInit {
   @Output() outputToParent = new EventEmitter<boolean>();
   bankAccounts : BankAccount[];
   incomeCategories: IncomeCategory[];
+  dateAdded: Date = new Date();
   selectedAccountId: number = null;
   selectedCategoryId: number = null;
   ammount: number;
@@ -39,16 +40,17 @@ export class IncomeCreateComponent implements OnInit {
 
   
 
-  submitIncome(){
-    
-    const formValue : Income = this.incomeForm.form.value;
+  submitIncome(){    
+    const formValue = this.incomeForm.form.value;
+    console.log(this.incomeForm.form.value)
 
     if(this.incomeForm.form.valid ){
       this.userService.postNewIncomeRecord(formValue, this.authService.decodedToken.nameid).subscribe(() =>{
         this.incomeForm.reset(
           {
             bankAccountId : this.bankAccounts[0].id,
-            incomeCategoryId : this.incomeCategories[0].id
+            incomeCategoryId : this.incomeCategories[0].id,
+            dateAdded : new Date()
           }
          );
 
@@ -57,8 +59,7 @@ export class IncomeCreateComponent implements OnInit {
       }, error => {
         this.alertify.error("An error happened while posting new income!");
       })
-    }
-    
+    }    
   }
 
 }
