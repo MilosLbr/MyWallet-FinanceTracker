@@ -17,9 +17,21 @@ namespace MyWallet.Services.Implementation
         {
         }
         public MyWalletContext DbContext { get { return _context as MyWalletContext; } }
-                      
 
-        public async Task<BankAccountsAndCategories> getBankAccountsAndTransactionCategories(long userId)
+        public async Task DeleteBankAccountAndAllTransactions(int BankAccountId)
+        {
+            var bankAccountFromDb = await DbContext.BankAccounts.FindAsync(BankAccountId);
+
+            var incomeRecords = bankAccountFromDb.Incomes;
+            var expenseRecords = bankAccountFromDb.Expenses;
+
+            DbContext.Incomes.RemoveRange(incomeRecords);
+            DbContext.Expenses.RemoveRange(expenseRecords);
+
+            Remove(bankAccountFromDb);
+        }
+
+        public async Task<BankAccountsAndCategories> GetBankAccountsAndTransactionCategories(long userId)
         {
             var IncomeCategories = await DbContext.IncomeCategories.Select(i => new IncomeCategoryDto
             {

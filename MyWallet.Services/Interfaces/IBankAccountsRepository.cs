@@ -10,6 +10,7 @@ namespace MyWallet.Services.Interfaces
 {
     public interface IBankAccountsRepository : IRepository<BankAccount>
     {
-        Task<BankAccountsAndCategories> getBankAccountsAndTransactionCategories(long userId);
+        Task<BankAccountsAndCategories> GetBankAccountsAndTransactionCategories(long userId);
+        Task DeleteBankAccountAndAllTransactions(int BankAccountId);
     }
 }

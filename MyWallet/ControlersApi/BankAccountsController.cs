@@ -50,7 +50,7 @@ namespace MyWallet2.ControlersApi
             if (!IsUserAuthorized(userId))
                 return Unauthorized();
 
-            var bankAccounts = await _unitOfWork.BankAccounts.getBankAccountsAndTransactionCategories(userId);
+            var bankAccounts = await _unitOfWork.BankAccounts.GetBankAccountsAndTransactionCategories(userId);
 
             return Ok(bankAccounts);
 
@@ -80,6 +80,28 @@ namespace MyWallet2.ControlersApi
 
             return BadRequest("An error happened while creating new account!");
         }       
+
+        [HttpDelete]
+        [Route("{bankAccountId}")]
+        public async Task<IHttpActionResult> DeleteBankAccount(long userId, int bankAccountId)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            var userFromDb = await _unitOfWork.Users.GetUserData(userId);
+
+            if (!userFromDb.BankAccounts.Any(b => b.Id == bankAccountId))
+                return BadRequest("Current User doesn't own this account!");
+
+            await _unitOfWork.BankAccounts.DeleteBankAccountAndAllTransactions(bankAccountId);
+
+            if (await _unitOfWork.Complete() > 0)
+            {
+                return Ok("Deleted!");
+            }
+
+            return BadRequest("An error happened while deleting Bank account and it's transactions!");
+        }
 
         private bool IsUserAuthorized (long userId)
         {

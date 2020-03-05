@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   @ViewChild("loginForm", {static: false}) loginForm: NgForm;
+  testerLoginData = {
+    username: 'tester',
+    password: 'password'
+  }
 
   constructor(private authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
@@ -27,8 +31,21 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/dashboard"])
       }, error => {
         this.alertify.error(error.error.error_description)
-      })
+      });
     }
+  }
+
+  loginAsTester(event){
+    event.target.disabled = true;
+    
+    this.authService.login(this.testerLoginData.username, this.testerLoginData.password).subscribe(() => {
+      this.alertify.success("Logged in successfully!");
+      this.loginForm.reset();
+      this.router.navigate(["/dashboard"]);
+      event.target.disabled = false;
+    }, error => {
+      this.alertify.error(error.error.error_description)
+    });
   }
 
 }

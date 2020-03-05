@@ -3,3 +3,7 @@
     background-color: rgb(212, 247, 247);
     border-radius: 10px;
 }
+
+span.accountName:hover{
+    color: #17a2b8;
+}

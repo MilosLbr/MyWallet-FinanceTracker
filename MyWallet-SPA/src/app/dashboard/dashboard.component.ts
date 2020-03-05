@@ -44,4 +44,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  openEditAccountsModal(event, accountId, accountName){
+    event.stopPropagation();
+    console.log('going to edit', accountId, accountName);
+  }
+
 }

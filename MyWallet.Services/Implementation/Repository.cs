@@ -28,7 +28,7 @@ namespace MyWallet.Services.Implementation
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            Entities.AddRange(entities);
+            Entities.AddRange(entities);    
         }
 
         public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
