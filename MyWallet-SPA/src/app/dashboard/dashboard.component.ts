@@ -5,6 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { UserService } from '../_services/user.service';
 import { TransactionGroup } from '../_models/transactionGroup';
 import { CreateAccountModalComponent } from './create-account-modal/create-account-modal.component';
+import { EditAccountModalComponent } from './edit-account-modal/edit-account-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,6 +48,10 @@ export class DashboardComponent implements OnInit {
   openEditAccountsModal(event, accountId, accountName){
     event.stopPropagation();
     console.log('going to edit', accountId, accountName);
+    this.bsModalRef = this.modalService.show(EditAccountModalComponent);
+    this.modalService.onHide.subscribe(() => {
+      console.log('edit modal closed')
+    })
   }
 
 }

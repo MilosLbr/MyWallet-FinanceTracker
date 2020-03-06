@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -16,7 +16,7 @@ export class CreateAccountModalComponent implements OnInit {
   accountName: string;
   ballance: number = 0;
 
-  constructor(public bsModalRef: BsModalRef, private userService: UserService, private authService: AuthService, private alertify: AlertifyService,) { }
+  constructor(public bsModalRef: BsModalRef, private userService: UserService, private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }

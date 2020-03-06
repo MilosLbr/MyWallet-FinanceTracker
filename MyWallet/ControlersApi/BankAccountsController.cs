@@ -103,6 +103,32 @@ namespace MyWallet2.ControlersApi
             return BadRequest("An error happened while deleting Bank account and it's transactions!");
         }
 
+        [HttpPut]
+        [Route("")]
+        public async Task<IHttpActionResult> UpdateBankAccountName(long userId, BankAccountForUpdateDto bankAccountForUpdateDto)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            var userFromDb = await _unitOfWork.Users.GetUserData(userId);
+
+            var bankAccountToUpdate = userFromDb.BankAccounts.SingleOrDefault(b => b.Id == bankAccountForUpdateDto.Id);
+
+            if(bankAccountToUpdate != null)
+            {
+                bankAccountToUpdate.AccountName = bankAccountForUpdateDto.AccountName;
+
+                if (await _unitOfWork.Complete() > 0)
+                    return Ok("Updated bank account name!");
+            }
+            else if(bankAccountToUpdate == null)
+            {
+                return BadRequest("Invalid bank account id: " + bankAccountForUpdateDto.Id);  
+            }
+
+            return BadRequest("An error happened while updating bank account name!");
+        }
+
         private bool IsUserAuthorized (long userId)
         {
             if (userId != long.Parse(User.Identity.GetUserId()))

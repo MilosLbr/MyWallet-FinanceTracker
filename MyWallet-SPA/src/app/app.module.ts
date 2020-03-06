@@ -29,6 +29,7 @@ import { IncomesResolver } from './_resolvers/incomes.resolver';
 import { IncomeCreateComponent } from './incomes/income-create/income-create.component';
 import { IncomeListComponent } from './incomes/income-list/income-list.component';
 import { CreateAccountModalComponent } from './dashboard/create-account-modal/create-account-modal.component';
+import { EditAccountModalComponent } from './dashboard/edit-account-modal/edit-account-modal.component';
 
 
 export function jwtOptionsFactory() {
@@ -49,6 +50,7 @@ export function jwtOptionsFactory() {
       ExpensesComponent,
       DashboardComponent,
       CreateAccountModalComponent,
+      EditAccountModalComponent,
       AccountDetailsComponent,
       IncomeCreateComponent,
       IncomeListComponent
@@ -56,7 +58,7 @@ export function jwtOptionsFactory() {
    ],
    entryComponents:[
       CreateAccountModalComponent,
-
+      EditAccountModalComponent
    ],
    imports: [
       BrowserModule,
