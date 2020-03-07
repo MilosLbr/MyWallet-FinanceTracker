@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <form #loginForm="ngForm" (ngSubmit)="submitForm()">
+  <form #loginForm="ngForm" (ngSubmit)="submitForm($event)">
     <div class="form-group">
       <label for="usernameLogin">Username:</label>
       <input 

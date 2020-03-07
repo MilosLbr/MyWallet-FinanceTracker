@@ -118,8 +118,9 @@ namespace MyWallet2.ControlersApi
             {
                 bankAccountToUpdate.AccountName = bankAccountForUpdateDto.AccountName;
 
-                if (await _unitOfWork.Complete() > 0)
-                    return Ok("Updated bank account name!");
+                await _unitOfWork.Complete();
+
+                return Ok("Updated bank account name!");
             }
             else if(bankAccountToUpdate == null)
             {

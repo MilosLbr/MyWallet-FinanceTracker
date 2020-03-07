@@ -1,3 +1,16 @@
-<p>
-  edit-account-modal works!
-</p>
+<div class="container p-3">
+  <h3>Edit account name</h3>
+  <hr>
+  <form #editNameForm="ngForm" (submit)="submitEdit()">
+    <div class="form-group">
+      <label for="accountName">Account name:</label>
+      <input class="form-control" type="text" name="accountName" id="accountName" #accName ='ngModel' required [(ngModel)]="accountName" autocomplete="off">
+      <div *ngIf="accName.touched && !accName.valid" class="alert alert-danger">
+        Account name is required!
+      </div>
+    </div>
+    <hr>
+    <button type="submit" class="btn btn-success" [disabled]="!editNameForm.valid">Edit</button>
+  </form>
+
+</div>

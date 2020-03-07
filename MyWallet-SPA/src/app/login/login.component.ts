@@ -21,16 +21,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitForm(){
+  submitForm(event){
     if(this.loginForm.valid){
-      const {username, password } = this.loginForm.value;
+      const {username, password } = this.loginForm.value;      
+      event.target.disabled = true;
 
       this.authService.login(username, password).subscribe(() => {
         this.alertify.success("Logged in successfully!");
         this.loginForm.reset();
         this.router.navigate(["/dashboard"])
       }, error => {
-        this.alertify.error(error.error.error_description)
+        this.alertify.error(error.error.error_description);
+        event.target.disabled = false;
       });
     }
   }
@@ -42,9 +44,10 @@ export class LoginComponent implements OnInit {
       this.alertify.success("Logged in successfully!");
       this.loginForm.reset();
       this.router.navigate(["/dashboard"]);
-      event.target.disabled = false;
+      
     }, error => {
-      this.alertify.error(error.error.error_description)
+      this.alertify.error(error.error.error_description);
+      event.target.disabled = false;
     });
   }
 

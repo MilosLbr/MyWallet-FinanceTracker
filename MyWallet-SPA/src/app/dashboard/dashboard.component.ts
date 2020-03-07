@@ -6,6 +6,7 @@ import { UserService } from '../_services/user.service';
 import { TransactionGroup } from '../_models/transactionGroup';
 import { CreateAccountModalComponent } from './create-account-modal/create-account-modal.component';
 import { EditAccountModalComponent } from './edit-account-modal/edit-account-modal.component';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,8 +18,9 @@ export class DashboardComponent implements OnInit {
   bankAccounts : BankAccount[];
   bankAccountTransactions: TransactionGroup[];
   selectedBankAccountName: string;
+  selectedBankAccountId: number;
 
-  constructor(public authService: AuthService, private userService: UserService, private modalService: BsModalService) { }
+  constructor(public authService: AuthService, private userService: UserService, private modalService: BsModalService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.getAllBankAccounts();
@@ -27,10 +29,13 @@ export class DashboardComponent implements OnInit {
   getAllBankAccounts() {
     this.userService.getBankAccountListForUser(this.authService.decodedToken.nameid).subscribe((data: BankAccount[]) => {
       this.bankAccounts = data;
+    }, error => {
+      this.alertify.error("An error happened while retrieving bank accounts!");
     })
   }
 
   showTransactionsForAccount(bankAccountId: number){
+    this.selectedBankAccountId = bankAccountId;
     this.selectedBankAccountName = this.bankAccounts.filter(ba => ba.id == bankAccountId)[0].accountName;
 
     this.userService.getTransactionsOnBankAccount(this.authService.decodedToken.nameid, bankAccountId).subscribe((data: TransactionGroup[])=>{
@@ -46,12 +51,23 @@ export class DashboardComponent implements OnInit {
   }
 
   openEditAccountsModal(event, accountId, accountName){
-    event.stopPropagation();
-    console.log('going to edit', accountId, accountName);
-    this.bsModalRef = this.modalService.show(EditAccountModalComponent);
+    event.stopPropagation();   
+    const initialState = {
+      accountId,
+      accountName
+    }
+
+    this.bsModalRef = this.modalService.show(EditAccountModalComponent, {initialState});
     this.modalService.onHide.subscribe(() => {
-      console.log('edit modal closed')
+      this.getAllBankAccounts();
     })
+  }
+
+  updateListAfterDeletion(shouldUpdateList: boolean){
+    if(shouldUpdateList){
+      this.bankAccountTransactions = null;
+      this.getAllBankAccounts();
+    }
   }
 
 }

@@ -43,4 +43,12 @@ export class UserService {
     return this.http.post(this.baseUrl + "users/" + userId + "/bankAccounts", bankAccount)
   }
 
+  updateBankAccountName(userId: number, bankAccount: any){
+    return this.http.put(this.baseUrl+ "users/" + userId + "/bankAccounts", bankAccount);
+  }
+
+  deleteBankAccount(userId: number, bankAccountId: number){
+    return this.http.delete(this.baseUrl + "users/" + userId + "/bankAccounts/" + bankAccountId);
+  }
+
 }

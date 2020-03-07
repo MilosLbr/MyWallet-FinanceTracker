@@ -32,5 +32,10 @@
         <button class="col-1 btn btn-info"><i class="fas fa-chart-pie"></i></button>
     </h4>
 
-    <app-account-details [transactions]="bankAccountTransactions"></app-account-details>
+    <app-account-details
+        [transactions]="bankAccountTransactions"
+        [selectedBankAccountId]="selectedBankAccountId"
+        (emmitConfirmedDeletion)="updateListAfterDeletion($event)"
+      
+      ></app-account-details>
 </div>
