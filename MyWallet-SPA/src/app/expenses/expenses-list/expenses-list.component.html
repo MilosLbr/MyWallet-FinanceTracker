@@ -1,0 +1,35 @@
+<h4 class="m-3 text-center">Your expense records</h4>
+
+<div class="container text-center">  
+
+  <div *ngFor="let expense of listOfExpenses" class=" row no-gutters mb-1 align-items-center expense-row">
+
+    <div class="col-1 bg-dark text-white p-2">
+      {{expense.dateAdded | date:"dd.MM.yyyy"}}
+    </div>
+    <div class="col-1">
+      <button title="Edit expense record" class="btn btn-info"><i class="fas fa-pen"></i></button>
+    </div>
+    <div class="col-2">      
+      {{expense.expenseCategory.expenseCategoryName}}
+    </div>
+
+    <div class="col-3">
+      {{expense.bankAccount.accountName}}
+    </div>
+
+    <div class="col-2 text-danger">
+      {{expense.ammount}}
+    </div>
+
+    <div class="col-2">
+      {{expense.comment}}
+    </div>
+
+    <div class="col-1">
+      <button title="Delete" class="btn btn-danger">X</button>
+    </div>
+
+  </div>
+
+</div>

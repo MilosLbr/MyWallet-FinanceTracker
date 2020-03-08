@@ -1,0 +1,7 @@
+.expense-row{
+    background-color: rgb(250, 250, 250);
+}
+.expense-row:hover{
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+}

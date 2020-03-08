@@ -8,7 +8,7 @@ import { Observable , of} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class IncomesResolver implements Resolve<AccountsAndCategories>{
+export class BankAccountsAndCategoriesResolver implements Resolve<AccountsAndCategories>{
 
     constructor(private userService: UserService, private authService : AuthService,
         private alertify : AlertifyService, private router: Router){}

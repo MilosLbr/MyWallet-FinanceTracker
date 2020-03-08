@@ -55,4 +55,8 @@ export class UserService {
     return this.http.put(this.baseUrl + "users/"+ userId + "/incomes", income);
   }
 
+  getExpenseRecordsForUser(userId: number){
+    return this.http.get(this.baseUrl + "users/"+ userId +"/expenses");
+  }
+
 }

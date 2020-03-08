@@ -25,13 +25,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './_guards/auth-guard.service';
 import { AccountDetailsComponent } from './dashboard/account-details/account-details.component';
 import { UserService } from './_services/user.service';
-import { IncomesResolver } from './_resolvers/incomes.resolver';
+import { BankAccountsAndCategoriesResolver } from './_resolvers/BankAccountsAndCategories.resolver';
 import { IncomeCreateComponent } from './incomes/income-create/income-create.component';
 import { IncomeListComponent } from './incomes/income-list/income-list.component';
 import { CreateAccountModalComponent } from './dashboard/create-account-modal/create-account-modal.component';
 import { EditAccountModalComponent } from './dashboard/edit-account-modal/edit-account-modal.component';
 import { IncomeUpdateComponent } from './incomes/income-update/income-update.component';
-
+import { ExpensesListComponent } from './expenses/expenses-list/expenses-list.component';
+import { ExpenseCreateComponent } from './expenses/expense-create/expense-create.component';
 
 export function jwtOptionsFactory() {
    return {
@@ -49,6 +50,8 @@ export function jwtOptionsFactory() {
       LoginComponent,
       IncomesComponent,
       ExpensesComponent,
+      ExpensesListComponent,
+      ExpenseCreateComponent,
       DashboardComponent,
       CreateAccountModalComponent,
       EditAccountModalComponent,
@@ -88,7 +91,7 @@ export function jwtOptionsFactory() {
       AuthGuard,
       UserService,
       DatePipe,
-      IncomesResolver
+      BankAccountsAndCategoriesResolver
    ],
    bootstrap: [
       AppComponent

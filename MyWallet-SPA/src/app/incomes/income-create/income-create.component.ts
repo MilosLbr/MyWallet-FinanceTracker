@@ -3,7 +3,6 @@ import { BankAccount } from 'src/app/_models/bankAccount';
 import { IncomeCategory } from 'src/app/_models/incomeCategory';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Income } from 'src/app/_models/income';
 import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';

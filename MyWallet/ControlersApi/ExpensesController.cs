@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
 using MyWallet.Data;
 using MyWallet.Data.DTO;
@@ -34,7 +33,7 @@ namespace MyWallet2.ControlersApi
             if (!IsUserAuthorized(userId))
                 return Unauthorized();
 
-            var expenseRecordsFromDb = await _unitOfWork.Expenses.Find(e => e.UserId == userId).ToListAsync();
+            var expenseRecordsFromDb = await _unitOfWork.Expenses.Find(e => e.UserId == userId).OrderByDescending(e => e.DateAdded).ToListAsync();
 
             var expensesList = _mapper.Map<List<ExpensesForListDto>>(expenseRecordsFromDb);
             return Ok(expensesList);

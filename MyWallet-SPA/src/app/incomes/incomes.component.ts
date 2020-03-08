@@ -1,8 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {  NgForm } from '@angular/forms';
-import { IncomeCategory } from '../_models/incomeCategory';
-import { BankAccount } from '../_models/bankAccount';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Income } from '../_models/income';
 import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
