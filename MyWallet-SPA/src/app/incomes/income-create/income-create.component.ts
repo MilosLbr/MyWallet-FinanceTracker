@@ -37,9 +37,7 @@ export class IncomeCreateComponent implements OnInit {
       this.selectedCategoryId = this.incomeCategories[0].id;
     });
   }
-
   
-
   submitIncome(){    
     const formValue = this.incomeForm.form.value;
 

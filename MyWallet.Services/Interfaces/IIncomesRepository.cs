@@ -14,5 +14,7 @@ namespace MyWallet.Services.Interfaces
         Income AddMoneyToBankAccount(long userId, User user, IncomeForCreateDto incomeForCreateDto, IMapper mapper);
 
         Task DeleteIncomeRecord(int incomeId);
+
+        Task UpdateIncomeRecord(IncomeForUpdateDto incomeForUpdateDto, IMapper mapper);
     }
 }

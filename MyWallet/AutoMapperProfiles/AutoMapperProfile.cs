@@ -28,6 +28,8 @@ namespace MyWallet2.AutoMapperProfiles
             CreateMap<Income, IncomeForListDto>();
             CreateMap<IncomeForCreateDto, Income>();
 
+            CreateMap<IncomeForUpdateDto, Income>();
+
             CreateMap<IncomeCategory, IncomeCategoryDto>();
             CreateMap<IncomeCategoryDto, IncomeCategory>();
 

@@ -80,6 +80,21 @@ namespace MyWallet2.ControlersApi
             return BadRequest("An error happened while deleting income record!");
         }
 
+        [HttpPut]
+        [Route("")]
+        public async Task<IHttpActionResult> UpdateIncomeRecord(long userId, IncomeForUpdateDto incomeForUpdateDto)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            await _unitOfWork.Incomes.UpdateIncomeRecord(incomeForUpdateDto, _mapper);
+
+            if(await _unitOfWork.Complete() > 0)
+                return Ok("Updated income redord with Id: " + incomeForUpdateDto.Id);
+
+            return BadRequest("An error happened while updating income: " + incomeForUpdateDto.Id);
+        }
+
         private bool IsUserAuthorized(long userId)
         {
             if (userId != long.Parse(User.Identity.GetUserId()))

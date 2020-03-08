@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, TemplateRef, Output, EventEmitter } from '@angular/core';
-import { Transaction } from 'src/app/_models/transaction';
 import { TransactionGroup } from 'src/app/_models/transactionGroup';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { UserService } from 'src/app/_services/user.service';

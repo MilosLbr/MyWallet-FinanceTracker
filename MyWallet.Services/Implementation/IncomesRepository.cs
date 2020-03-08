@@ -44,5 +44,18 @@ namespace MyWallet.Services.Implementation
 
             Remove(incomeFromDb);
         }
+
+        public async Task UpdateIncomeRecord(IncomeForUpdateDto incomeForUpdateDto, IMapper mapper)
+        {
+            var incomeFromDb = await Get(incomeForUpdateDto.Id);
+
+            var bankAccountFromDb = incomeFromDb.BankAccount;
+
+            bankAccountFromDb.Ballance = bankAccountFromDb.Ballance - incomeFromDb.Ammount + incomeForUpdateDto.Ammount;
+
+            mapper.Map(incomeForUpdateDto, incomeFromDb);
+
+            incomeFromDb.NewBallance = bankAccountFromDb.Ballance;
+        }
     }
 }

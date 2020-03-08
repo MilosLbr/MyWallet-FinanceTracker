@@ -19,7 +19,7 @@
                 <span class="accountName" title="Edit name" (click)="openEditAccountsModal($event, bankAccount.id, bankAccount.accountName)">
                     {{bankAccount.accountName}}
                 </span>: 
-                <span [ngClass]="{'text-success': bankAccount.ballance > 10000, 'text-warning': bankAccount.ballance < 10000 && bankAccount.ballance > 0, 'text-danger': bankAccount.ballance <=0}">
+                <span [ngClass]="{'text-success': bankAccount.ballance > 10000, 'text-warning': bankAccount.ballance <= 10000 && bankAccount.ballance > 0, 'text-danger': bankAccount.ballance <=0}">
                     {{bankAccount.ballance}}
                     </span>
         </button>       

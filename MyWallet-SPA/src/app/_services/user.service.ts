@@ -51,4 +51,8 @@ export class UserService {
     return this.http.delete(this.baseUrl + "users/" + userId + "/bankAccounts/" + bankAccountId);
   }
 
+  updateIncomeRecord(userId: number, income: any){
+    return this.http.put(this.baseUrl + "users/"+ userId + "/incomes", income);
+  }
+
 }
