@@ -89,10 +89,17 @@ namespace MyWallet2.ControlersApi
 
             await _unitOfWork.Incomes.UpdateIncomeRecord(incomeForUpdateDto, _mapper);
 
-            if(await _unitOfWork.Complete() > 0)
+            try
+            {
+                await _unitOfWork.Complete();
                 return Ok("Updated income redord with Id: " + incomeForUpdateDto.Id);
+            }
+            catch (Exception)
+            {
+                return BadRequest("An error happened while updating income: " + incomeForUpdateDto.Id);
+            }
 
-            return BadRequest("An error happened while updating income: " + incomeForUpdateDto.Id);
+            
         }
 
         private bool IsUserAuthorized(long userId)

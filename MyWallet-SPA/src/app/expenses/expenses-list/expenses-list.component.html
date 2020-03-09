@@ -8,7 +8,7 @@
       {{expense.dateAdded | date:"dd.MM.yyyy"}}
     </div>
     <div class="col-1">
-      <button title="Edit expense record" class="btn btn-info"><i class="fas fa-pen"></i></button>
+      <button title="Edit expense record" class="btn btn-info" (click)="openEditExpenseModal(expense)"><i class="fas fa-pen"></i></button>
     </div>
     <div class="col-2">      
       {{expense.expenseCategory.expenseCategoryName}}

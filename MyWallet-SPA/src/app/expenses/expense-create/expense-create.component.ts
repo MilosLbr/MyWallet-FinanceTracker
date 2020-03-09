@@ -38,6 +38,7 @@ export class ExpenseCreateComponent implements OnInit {
 
   submitExpense(){
     const formValue = this.expenseForm.form.value;
+    formValue.dateAdded = formValue.dateAdded.toDateString();
 
     if(this.expenseForm.form.valid){
       this.userService.postNewExpenseRecord(this.authService.decodedToken.nameid, formValue).subscribe(() => {

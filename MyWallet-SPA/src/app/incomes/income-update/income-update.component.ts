@@ -31,6 +31,7 @@ export class IncomeUpdateComponent implements OnInit {
     if(this.editIncomeForm.valid){
       const incomeUpdateDto =  this.editIncomeForm.value;
       incomeUpdateDto.id = this.incomeId;
+      incomeUpdateDto.dateAdded = incomeUpdateDto.dateAdded.toDateString();
 
       this.userService.updateIncomeRecord(this.authService.decodedToken.nameid, incomeUpdateDto).subscribe(()=> {
         this.alertify.success("Updated!");

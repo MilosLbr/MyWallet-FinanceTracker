@@ -33,6 +33,7 @@ import { EditAccountModalComponent } from './dashboard/edit-account-modal/edit-a
 import { IncomeUpdateComponent } from './incomes/income-update/income-update.component';
 import { ExpensesListComponent } from './expenses/expenses-list/expenses-list.component';
 import { ExpenseCreateComponent } from './expenses/expense-create/expense-create.component';
+import { ExpenseUpdateComponent } from './expenses/expense-update/expense-update.component';
 
 export function jwtOptionsFactory() {
    return {
@@ -52,6 +53,7 @@ export function jwtOptionsFactory() {
       ExpensesComponent,
       ExpensesListComponent,
       ExpenseCreateComponent,
+      ExpenseUpdateComponent,
       DashboardComponent,
       CreateAccountModalComponent,
       EditAccountModalComponent,
@@ -64,7 +66,8 @@ export function jwtOptionsFactory() {
    entryComponents:[
       CreateAccountModalComponent,
       EditAccountModalComponent,
-      IncomeUpdateComponent
+      IncomeUpdateComponent,
+      ExpenseUpdateComponent
    ],
    imports: [
       BrowserModule,

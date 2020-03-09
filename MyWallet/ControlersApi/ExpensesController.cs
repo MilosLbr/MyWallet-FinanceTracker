@@ -91,10 +91,15 @@ namespace MyWallet2.ControlersApi
 
             await _unitOfWork.Expenses.UpdateExpenseRecord(expenseForUpdateDto, _mapper);
 
-            if (await _unitOfWork.Complete() > 0)
+            try
+            {
+                await _unitOfWork.Complete();
                 return Ok("Updated expense record with id: " + expenseForUpdateDto.Id);
-
-            return BadRequest("An error happened while updateing expense record: " + expenseForUpdateDto.Id);
+            }
+            catch (Exception)
+            {                
+                return BadRequest("An error happened while updateing expense record: " + expenseForUpdateDto.Id);
+            }
         }
 
         private bool IsUserAuthorized(long userId)

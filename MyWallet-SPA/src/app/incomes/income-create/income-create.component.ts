@@ -39,6 +39,7 @@ export class IncomeCreateComponent implements OnInit {
   
   submitIncome(){    
     const formValue = this.incomeForm.form.value;
+    formValue.dateAdded = formValue.dateAdded.toDateString();
 
     if(this.incomeForm.form.valid ){
       this.userService.postNewIncomeRecord(formValue, this.authService.decodedToken.nameid).subscribe(() =>{

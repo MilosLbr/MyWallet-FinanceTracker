@@ -1,0 +1,68 @@
+<div class="container p-3">
+  <h4>Edit expense record:</h4>
+  <hr>
+  <form #editExpenseForm='ngForm' (submit)="submitEditForm()">
+    <div class="form-group">
+      <input type="text"
+        placeholder="Select date"
+        class="form-control"
+        bsDatepicker      
+        [(ngModel)]="dateAdded"
+        #selectedDate ="ngModel"
+        name="dateAdded"
+        required      
+        autocomplete="off">
+      <div *ngIf="!selectedDate.valid && selectedDate.dirty" class="alert alert-danger">
+          Date is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="expenseCtg">Expense category:</label>
+      
+      <select 
+      class="form-control" 
+      name="expenseCategoryId" 
+      id="expenseCtg" 
+      [(ngModel)]="expenseCategoryId" 
+      required
+      >
+  
+        <option  *ngFor="let category of allExpenseCategories;" 
+        [ngValue]='category.id'
+        >{{category.expenseCategoryName}}</option>
+  
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="amount">Set ammount:</label>
+      <input 
+      class="form-control" 
+      type="number" name="ammount" 
+      id="amount" 
+      #selectedAmmount = 'ngModel'
+      min="1" 
+      [(ngModel)]="ammount" 
+      required
+      >
+      <div *ngIf="!selectedAmmount.valid && selectedAmmount.touched" class="alert alert-danger">
+        Ammount is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="coment" class="control-label">Comment:</label>
+      <input class="form-control" type="text" name="comment" id="coment" [(ngModel)]="comment" autocomplete="off">    
+    </div>
+
+    <hr>
+
+      <button 
+        type="submit" 
+        class="btn btn-success"
+        [disabled]="!editExpenseForm.valid">
+        Submit
+    </button>
+  </form> 
+</div>
