@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { Expense } from 'src/app/_models/expense';
 import { AuthService } from 'src/app/_services/auth.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -25,6 +25,31 @@ export class ExpensesListComponent implements OnInit {
     this.route.data.subscribe((data ) => {
       this.expenseCategories = data.accountsAndCategories.expenseCategories;
    }); 
+  }
+
+  deleteExpenseRecord(expenseRecordId: number, template: TemplateRef<any>){
+    this.expenseRecordIdForDelete = expenseRecordId;
+
+    this.modalRef = this.modalService.show(template);
+  }
+
+  confirm(){
+    this.userService.deleteExpenseRecord(this.authService.decodedToken.nameid, this.expenseRecordIdForDelete).subscribe(()=>{
+      this.alertify.success('Deleted!');      
+      this.modalRef.hide();
+      // Refresh list
+      this.userService.getExpenseRecordsForUser(this.authService.decodedToken.nameid).subscribe((data: Expense[]) =>{
+        this.listOfExpenses = data;
+      }, error => {
+        this.alertify.error("An error happened while retrivieng list of expense records!");  
+      });
+    }, error =>{
+      this.alertify.error("An error occured!");
+    });
+  }
+
+  decline(){
+    this.modalRef.hide();
   }
 
   openEditExpenseModal(expense: Expense){

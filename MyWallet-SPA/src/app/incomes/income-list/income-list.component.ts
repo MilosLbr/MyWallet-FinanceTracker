@@ -48,7 +48,7 @@ export class IncomeListComponent implements OnInit {
       });
     }, error =>{
       this.alertify.error("An error occured!");
-    })
+    });
   }
   
   decline(){
