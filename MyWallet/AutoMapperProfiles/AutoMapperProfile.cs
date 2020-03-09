@@ -38,6 +38,8 @@ namespace MyWallet2.AutoMapperProfiles
 
             CreateMap<Expense, ExpensesForListDto>();
             CreateMap<ExpenseForCreateDto, Expense>();
+
+            CreateMap<ExpenseForUpdateDto, Expense>();
         }
     }
 }

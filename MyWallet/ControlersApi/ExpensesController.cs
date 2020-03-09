@@ -64,6 +64,38 @@ namespace MyWallet2.ControlersApi
             return BadRequest("An error happened while creating new expense!");
         }
         
+        [HttpDelete]
+        [Route("{expenseId}")]
+        public async Task<IHttpActionResult> DeleteExpenseRecord(long userId, int expenseId)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            await _unitOfWork.Expenses.DeleteExpenseRecord(expenseId);
+
+            if (await _unitOfWork.Complete() > 0)
+            {
+                return Ok("Deleted!");
+            }
+
+            return BadRequest("An error happened while deleting expense record!");
+        }
+
+
+        [HttpPut]
+        [Route("")]
+        public async Task<IHttpActionResult> UpdateExpenseRecord(long userId, ExpenseForUpdateDto expenseForUpdateDto)
+        {
+            if (!IsUserAuthorized(userId))
+                return Unauthorized();
+
+            await _unitOfWork.Expenses.UpdateExpenseRecord(expenseForUpdateDto, _mapper);
+
+            if (await _unitOfWork.Complete() > 0)
+                return Ok("Updated expense record with id: " + expenseForUpdateDto.Id);
+
+            return BadRequest("An error happened while updateing expense record: " + expenseForUpdateDto.Id);
+        }
 
         private bool IsUserAuthorized(long userId)
         {

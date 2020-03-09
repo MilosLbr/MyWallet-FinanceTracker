@@ -12,5 +12,7 @@ namespace MyWallet.Services.Interfaces
     public interface IExpensesRepository : IRepository<Expense>
     {
         Expense SubtractMoneyFromBankAccount(long userId, User user, ExpenseForCreateDto expenseForCreateDto, IMapper mapper);
+        Task DeleteExpenseRecord(int expenseId);
+        Task UpdateExpenseRecord(ExpenseForUpdateDto expenseForUpdateDto, IMapper mapper);
     }
 }

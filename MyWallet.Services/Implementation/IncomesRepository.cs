@@ -37,7 +37,7 @@ namespace MyWallet.Services.Implementation
         public async Task DeleteIncomeRecord(int incomeId)
         {
             var incomeFromDb = await Get(incomeId);
-            var bankAccountFromDb = await DbContext.BankAccounts.FindAsync(incomeFromDb.BankAccountId);
+            var bankAccountFromDb = incomeFromDb.BankAccount;
 
             var ammount = incomeFromDb.Ammount;
             bankAccountFromDb.Ballance -= ammount;

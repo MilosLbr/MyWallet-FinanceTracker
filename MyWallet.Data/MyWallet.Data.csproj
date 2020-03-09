@@ -96,6 +96,7 @@
     <Compile Include="DTO\BankAccountsAndCategories.cs" />
     <Compile Include="DTO\ExpenseCategoryDto.cs" />
     <Compile Include="DTO\ExpenseForCreateDto.cs" />
+    <Compile Include="DTO\ExpenseForUpdateDto.cs" />
     <Compile Include="DTO\ExpensesForListDto.cs" />
     <Compile Include="DTO\IncomeCategoryDto.cs" />
     <Compile Include="DTO\IncomeForCreateDto.cs" />

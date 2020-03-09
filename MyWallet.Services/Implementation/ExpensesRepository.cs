@@ -36,5 +36,29 @@ namespace MyWallet.Services.Implementation
 
             return expenseForDb;
         }
+
+        public async Task DeleteExpenseRecord(int expenseId)
+        {
+            var expenseFromDb = await Get(expenseId);
+            var bankAccountFromDb = expenseFromDb.BankAccount;
+
+            var ammount = expenseFromDb.Ammount;
+            bankAccountFromDb.Ballance += ammount;
+
+            Remove(expenseFromDb);
+        }
+
+        public async Task UpdateExpenseRecord(ExpenseForUpdateDto expenseForUpdateDto, IMapper mapper)
+        {
+            var expenseFromDb = await Get(expenseForUpdateDto.Id);
+            var bankAccountFromDb = expenseFromDb.BankAccount;
+
+            bankAccountFromDb.Ballance = bankAccountFromDb.Ballance + expenseFromDb.Ammount - expenseForUpdateDto.Ammount;
+
+            mapper.Map(expenseForUpdateDto, expenseFromDb);
+
+            expenseFromDb.NewBallance = bankAccountFromDb.Ballance;
+        
+        }
     }
 }
