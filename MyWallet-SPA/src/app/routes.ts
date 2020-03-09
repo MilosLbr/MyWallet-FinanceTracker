@@ -9,7 +9,7 @@ import { BankAccountsAndCategoriesResolver } from './_resolvers/BankAccountsAndC
 export const appRoutes : Routes= [
     {path: "", component: HomeComponent},
     {path: "incomes", canActivate:[AuthGuard], component: IncomesComponent , resolve: {accountsAndCategories : BankAccountsAndCategoriesResolver}},
-    {path: "expenses", canActivate:[AuthGuard], component: ExpensesComponent },
+    {path: "expenses", canActivate:[AuthGuard], component: ExpensesComponent, resolve: {accountsAndCategories : BankAccountsAndCategoriesResolver} },
     {path: "dashboard", canActivate:[AuthGuard], component: DashboardComponent},
     {path : '**', redirectTo: 'dashboard', pathMatch: 'full'}
 ]

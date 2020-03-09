@@ -1,6 +1,6 @@
 <div class="mt-4" >
   <tabset>
-    <tab heading="Insert new expense"><app-expense-create></app-expense-create></tab>
+    <tab heading="Insert new expense"><app-expense-create (outputToParent)="notificationFromCreateComponent($event)"></app-expense-create></tab>
     <tab heading="List of expenses"><app-expenses-list [listOfExpenses]='listOfExpenses'></app-expenses-list></tab>
     <tab heading="Stats">charts will go here</tab>
   </tabset>

@@ -27,4 +27,11 @@ export class ExpensesComponent implements OnInit {
       this.alertify.error("An error happened while retrieving expense records for user!")
     })
   }
+
+  notificationFromCreateComponent(shouldUpdateList: boolean){
+    if(shouldUpdateList){
+      // Rfresh list of expenses after submiting new one
+      this.getListOfExpenses();
+    }
+  }
 }

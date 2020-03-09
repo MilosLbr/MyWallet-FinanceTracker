@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AccountsAndCategories } from '../_models/accountsAndCategories';
 import { Income } from '../_models/income';
 import { BankAccountCreate } from '../_models/bankAccountCreate';
+import { Expense } from '../_models/expense';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,18 @@ export class UserService {
 
   getExpenseRecordsForUser(userId: number){
     return this.http.get(this.baseUrl + "users/"+ userId +"/expenses");
+  }
+
+  postNewExpenseRecord(userId: number, expense: Expense){
+    return this.http.post(this.baseUrl + "users/"+ userId +"/expenses" , expense);
+  }
+
+  deleteExpenseRecord(userId: number, expenseId: number){
+    return this.http.delete(this.baseUrl + "users/"+ userId +"/expenses/" + expenseId);
+  }
+
+  updateExpenseRecord(userId: number, expense: any){
+    return this.http.put(this.baseUrl + "users/"+ userId +"/expenses", expense);
   }
 
 }
