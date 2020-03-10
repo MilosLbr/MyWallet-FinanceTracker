@@ -5,3 +5,13 @@
     background-color: rgb(245, 245, 245);
     cursor: pointer;
 }
+
+
+@media(max-width: 1200px){
+    
+
+    .container{
+        max-width: 1250px;
+    }
+
+}

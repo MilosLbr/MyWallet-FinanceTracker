@@ -1,3 +1,14 @@
-.pushToRightLg{
-    margin-left: 228px;
+.pushDownSm{
+    margin-top: 80px;
 }
+
+
+
+@media(min-width: 1300px){
+    .pushToRightLg{
+        margin-left: 228px;
+        margin-top: 0;
+    }
+    
+}
+

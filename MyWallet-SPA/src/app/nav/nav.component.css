@@ -39,3 +39,25 @@ a:hover{
 .myBrand > span{
     font-size: 2rem;
 }
+
+@media(max-width: 1299px){
+    .fixNavbarTopSm{
+        flex-direction: row !important;
+        align-items: center !important;        
+        height: 70px;
+        width: 100%;
+        z-index: 1;
+    }
+    .fixNavbarTopSm .nav-item{
+        margin-bottom: 0;
+    }
+
+    .myBrand{
+        padding: 0;
+        align-self: inherit;
+    }
+
+    .myBrand i{
+        font-size: 2.5rem;
+    }
+}
