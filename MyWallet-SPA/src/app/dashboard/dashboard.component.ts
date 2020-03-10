@@ -7,6 +7,7 @@ import { TransactionGroup } from '../_models/transactionGroup';
 import { CreateAccountModalComponent } from './create-account-modal/create-account-modal.component';
 import { EditAccountModalComponent } from './edit-account-modal/edit-account-modal.component';
 import { AlertifyService } from '../_services/alertify.service';
+import { AccountChartsComponent } from './account-charts/account-charts.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -68,6 +69,16 @@ export class DashboardComponent implements OnInit {
       this.bankAccountTransactions = null;
       this.getAllBankAccounts();
     }
+  }
+
+  openChartsForBankAccount(){
+    const initialState = {
+      transactions: this.bankAccountTransactions,
+      accountName: this.selectedBankAccountName,
+    };
+
+    this.bsModalRef = this.modalService.show(AccountChartsComponent, { initialState });    
+    this.bsModalRef.setClass('modal-lg');
   }
 
 }

@@ -4,6 +4,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import * as CanvasJS from '../../../assets/canvasjs.min.js';
+
 
 @Component({
   selector: 'app-account-details',
@@ -13,6 +15,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class AccountDetailsComponent implements OnInit {
   @Input() transactions: TransactionGroup[];
   @Input() selectedBankAccountId: number;
+  @Input() selectedBankAccountName: string;
   @Output() emmitConfirmedDeletion: EventEmitter<boolean> = new EventEmitter();
   modalRef: BsModalRef;
   

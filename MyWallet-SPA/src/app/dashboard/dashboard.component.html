@@ -27,14 +27,10 @@
 </div>
 
 <div *ngIf="bankAccountTransactions" class="container accountDetailsContainer">
-    <h4 class="text-center row" style="width: 90%;">
-        <div class="col-11">Transactions on Bank account - {{this.selectedBankAccountName}} </div>
-        <button class="col-1 btn btn-info"><i class="fas fa-chart-pie"></i></button>
-    </h4>
-
     <app-account-details
         [transactions]="bankAccountTransactions"
         [selectedBankAccountId]="selectedBankAccountId"
+        [selectedBankAccountName]="selectedBankAccountName"
         (emmitConfirmedDeletion)="updateListAfterDeletion($event)"
       
       ></app-account-details>
