@@ -28,7 +28,6 @@ export class AccountChartsComponent implements OnInit {
   ngOnInit() {
     this.bankAccountId = this.route.snapshot.params["accountId"];
     this.accountName = this.route.snapshot.params["accountName"];
-    console.log(this.bankAccountId, this.accountName, this.route.snapshot)
 
     this.userService.getTransactionsOnBankAccount(this.authService.decodedToken.nameid, this.bankAccountId).subscribe((data: TransactionGroup[])=>{
       this.transactions = data;
@@ -38,21 +37,11 @@ export class AccountChartsComponent implements OnInit {
       this.renderBallanceChangeChart();
 
       this.prepareDataForIncomePieChart(this.transactions);
+
+      this.renderIncomePieChart();
     });
 
   }
-
-  // ngOnChanges(changes: SimpleChanges){
-  //   if(changes.transactions){      
-  //       // rerender charts on property change
-
-  //      this.accountBallanceChangheInTime = this.prepareDataForBalanceChangeChart(changes.transactions.currentValue);
-
-  //     if(this.ballanceChart){
-  //       this.renderBallanceChangeChart();
-  //     }
-  //   }
-  // }
 
   prepareDataForBalanceChangeChart(transactions: TransactionGroup[]){
     let chartData = transactions.map(tg => {
@@ -113,7 +102,35 @@ export class AccountChartsComponent implements OnInit {
     
   }
 
-  renderIncomePieChart(){
+  renderIncomePieChart(){ 
+
+    const categories = Object.keys(this.incomeCategories);
+    console.log(categories);
+
+    const dataPoints = categories.map(category => {
+      return {
+        name: category,
+        y: this.incomeCategories[category]
+      }
+    })
+
+    this.incomePieChart = new CanvasJS.Chart("income-by-category", {
+          theme: "light2",
+          animationEnabled: true,
+          exportEnabled: true,
+          title:{
+            text: "Incomes"
+          },
+          data: [{
+            type: "pie",
+            showInLegend: true,
+            toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+            indexLabel: "{name} - #percent%",
+            dataPoints: dataPoints
+          }]
+    })
+
+    this.incomePieChart.render();
 
   }
 
