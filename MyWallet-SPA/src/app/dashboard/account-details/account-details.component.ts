@@ -19,9 +19,20 @@ export class AccountDetailsComponent implements OnInit {
   @Output() emmitConfirmedDeletion: EventEmitter<boolean> = new EventEmitter();
   modalRef: BsModalRef;
   
+  accountBallanceChangheInTime: any;
+  ballanceChart: CanvasJS.Chart;
+  
   constructor(private modalService: BsModalService, private authService: AuthService,private userService: UserService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.accountBallanceChangheInTime = this.transactions.map(tg => {
+      let ballance = tg.transactions.map(t => t.newBallance)[0];
+      return {
+        x: new Date(tg.date),
+        y: ballance
+      }
+    }).reverse();  
+
   }
 
   deleteSelectedBankAccount(template: TemplateRef<any>){
@@ -42,5 +53,6 @@ export class AccountDetailsComponent implements OnInit {
   decline(){
     this.modalRef.hide();
   }
+
 
 }

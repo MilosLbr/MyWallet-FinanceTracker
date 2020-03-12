@@ -71,14 +71,5 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  openChartsForBankAccount(){
-    const initialState = {
-      transactions: this.bankAccountTransactions,
-      accountName: this.selectedBankAccountName,
-    };
-
-    this.bsModalRef = this.modalService.show(AccountChartsComponent, { initialState });    
-    this.bsModalRef.setClass('modal-lg');
-  }
 
 }

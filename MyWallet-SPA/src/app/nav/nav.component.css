@@ -46,7 +46,7 @@ a:hover{
         align-items: center !important;        
         height: 70px;
         width: 100%;
-        z-index: 1;
+        z-index: 10;
     }
     .fixNavbarTopSm .nav-item{
         margin-bottom: 0;

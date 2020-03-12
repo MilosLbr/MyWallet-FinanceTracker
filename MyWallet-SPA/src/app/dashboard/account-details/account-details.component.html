@@ -4,11 +4,15 @@
 
 <div *ngIf="transactions.length > 0">
 
-  <tabset>
-    <tab heading="{{this.selectedBankAccountName}}">
-      <h4 class="text-center row" style="width: 90%;">
-        <div class="col-11">Transactions on Bank account - {{this.selectedBankAccountName}} </div>
-      </h4>
+  <div class="container">
+    <h4 class="text-center row  mt-3" >
+      <div class="col-sm-11">Transactions on Bank account - {{this.selectedBankAccountName}} </div>
+      <div class="col-sm-1">
+        <button  class="btn btn-info" style="width: 100%;" [routerLink]="['/dashboard', this.selectedBankAccountId, this.selectedBankAccountName]"><i class="fas fa-chart-pie"></i></button>
+      </div>
+    </h4>
+  </div>
+      
 
       <ul class="list-group transactionsList">
         <li 
@@ -48,15 +52,13 @@
       
         </li>
       </ul>
-      
-    </tab>
-    <tab>
-      <ng-template tabHeading><i class="fas fa-chart-pie"></i>Stats</ng-template>
-      
-      <app-account-charts [transactions]="transactions" [accountName]="selectedBankAccountName"></app-account-charts>
-    </tab>
+   
     
-  </tabset>
+      <!-- <ng-template tabHeading><i class="fas fa-chart-pie"></i>Stats</ng-template> -->
+      
+      <!-- <app-account-charts [transactions]="transactions" ></app-account-charts> -->
+   
+    
 
   
 </div>
