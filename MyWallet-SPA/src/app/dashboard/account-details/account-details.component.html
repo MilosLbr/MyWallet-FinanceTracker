@@ -7,9 +7,7 @@
   <div class="container">
     <h4 class="text-center row  mt-3" >
       <div class="col-sm-11">Transactions on Bank account - {{this.selectedBankAccountName}} </div>
-      <div class="col-sm-1">
-        <button  class="btn btn-info" style="width: 100%;" [routerLink]="['/dashboard', this.selectedBankAccountId, this.selectedBankAccountName]"><i class="fas fa-chart-pie"></i></button>
-      </div>
+        <button  class="btn btn-info col-sm-1"  [routerLink]="['/dashboard', this.selectedBankAccountId, this.selectedBankAccountName]"><i class="fas fa-chart-pie"></i></button>
     </h4>
   </div>
       
@@ -51,16 +49,7 @@
             </div>
       
         </li>
-      </ul>
-   
-    
-      <!-- <ng-template tabHeading><i class="fas fa-chart-pie"></i>Stats</ng-template> -->
-      
-      <!-- <app-account-charts [transactions]="transactions" ></app-account-charts> -->
-   
-    
-
-  
+      </ul>    
 </div>
 
 

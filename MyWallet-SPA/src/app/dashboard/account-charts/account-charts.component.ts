@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TransactionGroup } from 'src/app/_models/transactionGroup';
 import * as CanvasJS from '../../../assets/canvasjs.min.js';
 import { ActivatedRoute } from '@angular/router';
@@ -33,12 +33,14 @@ export class AccountChartsComponent implements OnInit {
       this.transactions = data;
 
       this.accountBallanceChangheInTime = this.prepareDataForBalanceChangeChart(this.transactions);
-  
-      this.renderBallanceChangeChart();
 
       this.prepareDataForIncomePieChart(this.transactions);
 
+  
+      this.renderBallanceChangeChart();
       this.renderIncomePieChart();
+    }, error => {
+      this.alertify.error("An error happened while retrieving bank account data!");
     });
 
   }
@@ -61,6 +63,7 @@ export class AccountChartsComponent implements OnInit {
       title:{
         text: "Account ballance changes"
       },
+      exportEnabled:true,
       animationEnabled: true,
       backgroundColor: "transparent",
       theme: "light2",
@@ -94,25 +97,17 @@ export class AccountChartsComponent implements OnInit {
         }
       });
     });
-
-    // console.log(transactionsArray, ' filteredIncomes')
-    // console.log(incomeTransactions,' income transactions')
-    console.log(this.incomeCategories,'income categories')
-
-    
   }
 
   renderIncomePieChart(){ 
 
     const categories = Object.keys(this.incomeCategories);
-    console.log(categories);
-
     const dataPoints = categories.map(category => {
       return {
         name: category,
         y: this.incomeCategories[category]
       }
-    })
+    });
 
     this.incomePieChart = new CanvasJS.Chart("income-by-category", {
           theme: "light2",
@@ -131,7 +126,6 @@ export class AccountChartsComponent implements OnInit {
     })
 
     this.incomePieChart.render();
-
   }
 
 
