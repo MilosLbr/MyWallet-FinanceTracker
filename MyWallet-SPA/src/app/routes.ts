@@ -7,6 +7,7 @@ import { AuthGuard } from './_guards/auth-guard.service';
 import { BankAccountsAndCategoriesResolver } from './_resolvers/BankAccountsAndCategories.resolver';
 import { AccountChartsComponent } from './dashboard/account-charts/account-charts.component';
 import { IncomeChartsComponent } from './incomes/income-charts/income-charts.component';
+import { ExpenseChartsComponent } from './expenses/expense-charts/expense-charts.component';
 
 export const appRoutes : Routes= [
     {path: "", component: HomeComponent},
@@ -14,7 +15,8 @@ export const appRoutes : Routes= [
     resolve: {accountsAndCategories : BankAccountsAndCategoriesResolver}},
     {path: "incomes/stats", canActivate: [AuthGuard], component: IncomeChartsComponent},
     {path: "expenses", canActivate:[AuthGuard], component: ExpensesComponent, 
-    resolve: {accountsAndCategories : BankAccountsAndCategoriesResolver} },
+    resolve: {accountsAndCategories : BankAccountsAndCategoriesResolver}},
+    {path: "expenses/stats", canActivate: [AuthGuard], component: ExpenseChartsComponent},
     {path: "dashboard", canActivate:[AuthGuard], component: DashboardComponent},
     {path: "dashboard/:accountId/:accountName", canActivate: [AuthGuard], component: AccountChartsComponent},
     {path : '**', redirectTo: 'dashboard', pathMatch: 'full'}

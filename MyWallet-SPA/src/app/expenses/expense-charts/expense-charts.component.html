@@ -1,0 +1,35 @@
+<header>
+  <h4 class="text-center m-3">
+    Overall expense stats on all accounts
+  </h4>
+</header>
+
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <div class="card">
+        
+        <div class="card-block">
+          <div id="expense-stats" style="height: 350px; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6" *ngIf="listOfExpenses">
+      Overall expenses from 
+      <span style="font-weight: bold;">{{listOfExpenses[listOfExpenses.length-1].dateAdded | date:"dd.MM.yyyy"}} </span>
+      to
+      <span style="font-weight: bold;">{{listOfExpenses[0].dateAdded | date:"dd.MM.yyyy"}} </span>
+      :
+      <span style="font-weight: bold;">{{overallSum}}</span>
+    </div>
+  </div>
+</div>
+
+<footer class="p-3">
+	<button class="btn btn-info" [routerLink]="['/expenses']">Back to expenses</button>
+</footer>
