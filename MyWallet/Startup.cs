@@ -13,6 +13,7 @@ using MyWallet2.AutoMapperProfiles;
 using MyWallet2.Providers;
 using Owin;
 using Microsoft.Owin.Cors;
+using System.Web.Routing;
 
 [assembly: OwinStartup(typeof(MyWallet2.Startup))]
 
@@ -26,7 +27,8 @@ namespace MyWallet2
             HttpConfiguration config = new HttpConfiguration();
             ConfigureOAuth(app);
             MapperConfig.RegisterProfiles();
-            WebApiConfig.Register(config);            
+            WebApiConfig.Register(config);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
