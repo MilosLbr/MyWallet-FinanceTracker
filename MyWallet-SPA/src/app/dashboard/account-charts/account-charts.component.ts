@@ -19,9 +19,13 @@ export class AccountChartsComponent implements OnInit {
   accountBallanceChangheInTime: any;
   ballanceChart: CanvasJS.Chart;
 
-  incomePieChartData: any;
   incomeCategories = {};
   incomePieChart: CanvasJS.Chart;
+  overallIncomes: number = 0;
+
+  expenseCategories = {};
+  expensePieChart: CanvasJS.Chart;
+  overallExpenses: number = 0;
 
   constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthService, private alertify: AlertifyService) { }
 
@@ -35,10 +39,11 @@ export class AccountChartsComponent implements OnInit {
       this.accountBallanceChangheInTime = this.prepareDataForBalanceChangeChart(this.transactions);
 
       this.prepareDataForIncomePieChart(this.transactions);
-
+      this.prepareDataForExpensePieChart(this.transactions);
   
       this.renderBallanceChangeChart();
       this.renderIncomePieChart();
+      this.renderExpensePieChart();
     }, error => {
       this.alertify.error("An error happened while retrieving bank account data!");
     });
@@ -95,8 +100,12 @@ export class AccountChartsComponent implements OnInit {
         }else{
           this.incomeCategories[element.categoryName] = element.ammount;
         }
+
+        this.overallIncomes += element.ammount;
       });
     });
+
+    
   }
 
   renderIncomePieChart(){ 
@@ -108,7 +117,7 @@ export class AccountChartsComponent implements OnInit {
         y: this.incomeCategories[category]
       }
     });
-
+    
     this.incomePieChart = new CanvasJS.Chart("income-by-category", {
           theme: "light2",
           animationEnabled: true,
@@ -126,6 +135,57 @@ export class AccountChartsComponent implements OnInit {
     })
 
     this.incomePieChart.render();
+  }
+
+  prepareDataForExpensePieChart(transactions: TransactionGroup[]){
+    let transactionsArray = transactions.map(tg => {
+      return tg.transactions
+    });
+
+    let expenseTransactions = transactionsArray.map(tr => {
+      let expense = tr.filter(t => t.transactionType === "Expense");
+      return expense;
+    }).filter(el => el.length > 0);
+
+
+    expenseTransactions.forEach(expenseArr => {
+      expenseArr.forEach(element => {
+        if(this.expenseCategories[element.categoryName]){
+          this.expenseCategories[element.categoryName] += element.ammount;
+        }else{
+          this.expenseCategories[element.categoryName] = element.ammount;
+        }
+        this.overallExpenses += element.ammount;
+      });
+    });
+  }
+
+  renderExpensePieChart(){
+    const categories = Object.keys(this.expenseCategories);
+    const dataPoints = categories.map(category => {
+      return {
+        name: category,
+        y: this.expenseCategories[category]
+      }
+    });
+
+    this.expensePieChart = new CanvasJS.Chart("expense-by-category",{
+      theme: "light2",
+      animationEnabled: true,
+      exportEnabled: true,
+      title:{
+        text: "Expenses"
+      },
+      data: [{
+        type: "pie",
+        showInLegend: true,
+        toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+        indexLabel: "{name} - #percent%",
+        dataPoints: dataPoints
+      }]
+    });
+
+    this.expensePieChart.render();
   }
 
 

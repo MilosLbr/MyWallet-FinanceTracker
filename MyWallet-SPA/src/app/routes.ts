@@ -6,11 +6,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './_guards/auth-guard.service';
 import { BankAccountsAndCategoriesResolver } from './_resolvers/BankAccountsAndCategories.resolver';
 import { AccountChartsComponent } from './dashboard/account-charts/account-charts.component';
+import { IncomeChartsComponent } from './incomes/income-charts/income-charts.component';
 
 export const appRoutes : Routes= [
     {path: "", component: HomeComponent},
     {path: "incomes", canActivate:[AuthGuard], component: IncomesComponent , 
     resolve: {accountsAndCategories : BankAccountsAndCategoriesResolver}},
+    {path: "incomes/stats", canActivate: [AuthGuard], component: IncomeChartsComponent},
     {path: "expenses", canActivate:[AuthGuard], component: ExpensesComponent, 
     resolve: {accountsAndCategories : BankAccountsAndCategoriesResolver} },
     {path: "dashboard", canActivate:[AuthGuard], component: DashboardComponent},

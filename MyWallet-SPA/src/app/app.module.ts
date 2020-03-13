@@ -35,6 +35,7 @@ import { ExpensesListComponent } from './expenses/expenses-list/expenses-list.co
 import { ExpenseCreateComponent } from './expenses/expense-create/expense-create.component';
 import { ExpenseUpdateComponent } from './expenses/expense-update/expense-update.component';
 import { AccountChartsComponent } from './dashboard/account-charts/account-charts.component';
+import { IncomeChartsComponent } from './incomes/income-charts/income-charts.component';
 
 export function jwtOptionsFactory() {
    return {
@@ -62,7 +63,8 @@ export function jwtOptionsFactory() {
       AccountDetailsComponent,
       IncomeCreateComponent,
       IncomeListComponent,
-      IncomeUpdateComponent
+      IncomeUpdateComponent,
+      IncomeChartsComponent
       
    ],
    entryComponents:[

@@ -1,0 +1,35 @@
+<header>
+  <h4 class="text-center m-3">
+    Overall income stats on all accounts
+  </h4>
+</header>
+
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <div class="card">
+        
+        <div class="card-block">
+          <div id="income-stats" style="height: 350px; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6" *ngIf="listOfIncomes">
+      Overall incomes from 
+      <span style="font-weight: bold;">{{listOfIncomes[listOfIncomes.length-1].dateAdded | date:"dd.MM.yyyy"}} </span>
+      to
+      <span style="font-weight: bold;">{{listOfIncomes[0].dateAdded | date:"dd.MM.yyyy"}} </span>
+      :
+      <span style="font-weight: bold;">{{overallSum}}</span>
+    </div>
+  </div>
+</div>
+
+<footer class="p-3">
+	<button class="btn btn-info" [routerLink]="['/incomes']">Back to incomes</button>
+</footer>
