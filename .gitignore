@@ -10,8 +10,8 @@
 *.userosscache
 *.sln.docstates
 
-//angular build files
-MyWallet/Scripts/angular
+# angular build files
+# MyWallet/Scripts/angular
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
