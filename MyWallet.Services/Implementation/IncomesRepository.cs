@@ -53,9 +53,9 @@ namespace MyWallet.Services.Implementation
 
             bankAccountFromDb.Ballance = bankAccountFromDb.Ballance - incomeFromDb.Ammount + incomeForUpdateDto.Ammount;
 
-            mapper.Map(incomeForUpdateDto, incomeFromDb);
+            incomeFromDb.NewBallance = incomeFromDb.NewBallance - incomeFromDb.Ammount + incomeForUpdateDto.Ammount;
 
-            incomeFromDb.NewBallance = bankAccountFromDb.Ballance;
+            mapper.Map(incomeForUpdateDto, incomeFromDb);
         }
     }
 }

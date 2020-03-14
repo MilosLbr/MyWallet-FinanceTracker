@@ -11,7 +11,7 @@
 *.sln.docstates
 
 # angular build files
-# MyWallet/Scripts/angular
+MyWallet/Scripts/angular
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
