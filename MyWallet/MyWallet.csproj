@@ -265,16 +265,14 @@
     <Content Include="Scripts\angular\fa-solid-900.svg" />
     <Content Include="Scripts\angular\favicon.ico" />
     <Content Include="Scripts\angular\index.html" />
-    <Content Include="Scripts\angular\main-es2015.js" />
-    <Content Include="Scripts\angular\main-es5.js" />
-    <Content Include="Scripts\angular\polyfills-es2015.js" />
-    <Content Include="Scripts\angular\polyfills-es5.js" />
-    <Content Include="Scripts\angular\runtime-es2015.js" />
-    <Content Include="Scripts\angular\runtime-es5.js" />
-    <Content Include="Scripts\angular\styles-es2015.js" />
-    <Content Include="Scripts\angular\styles-es5.js" />
-    <Content Include="Scripts\angular\vendor-es2015.js" />
-    <Content Include="Scripts\angular\vendor-es5.js" />
+    <Content Include="Scripts\angular\main-es2015.9e598ce4e7e96a961b0a.js" />
+    <Content Include="Scripts\angular\main-es5.9e598ce4e7e96a961b0a.js" />
+    <Content Include="Scripts\angular\polyfills-es2015.5b10b8fd823b6392f1fd.js" />
+    <Content Include="Scripts\angular\polyfills-es5.3e8196928d184a6e5319.js" />
+    <Content Include="Scripts\angular\runtime-es2015.c5fa8325f89fc516600b.js" />
+    <Content Include="Scripts\angular\runtime-es5.c5fa8325f89fc516600b.js" />
+    <Content Include="Scripts\angular\scripts.1dfa56d1011365ba434f.js" />
+    <Content Include="Scripts\angular\styles.be1f408db4dabe76449a.css" />
     <Content Include="Views\Home\favicon.ico" />
     <Content Include="Scripts\angular\fa-brands-400.eot" />
     <Content Include="Scripts\angular\fa-brands-400.ttf" />
@@ -288,16 +286,6 @@
     <Content Include="Scripts\angular\fa-solid-900.ttf" />
     <Content Include="Scripts\angular\fa-solid-900.woff" />
     <Content Include="Scripts\angular\fa-solid-900.woff2" />
-    <Content Include="Scripts\angular\main-es2015.js.map" />
-    <Content Include="Scripts\angular\main-es5.js.map" />
-    <Content Include="Scripts\angular\polyfills-es2015.js.map" />
-    <Content Include="Scripts\angular\polyfills-es5.js.map" />
-    <Content Include="Scripts\angular\runtime-es2015.js.map" />
-    <Content Include="Scripts\angular\runtime-es5.js.map" />
-    <Content Include="Scripts\angular\styles-es2015.js.map" />
-    <Content Include="Scripts\angular\styles-es5.js.map" />
-    <Content Include="Scripts\angular\vendor-es2015.js.map" />
-    <Content Include="Scripts\angular\vendor-es5.js.map" />
     <Content Include="fonts\fa-brands-400.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
