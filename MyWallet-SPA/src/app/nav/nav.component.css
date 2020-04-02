@@ -19,6 +19,7 @@ a{
 
 a:hover{
     opacity: 0.8;
+    color: white;
 }
 
 .activeLink{
@@ -89,6 +90,10 @@ a:hover{
 
     #hamburger{
         display: inline-block;
+    }
+
+    #hamburger i{        
+        font-size: 1.9rem !important;
     }
 
     .navItemsCopy{
