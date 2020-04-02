@@ -1,4 +1,5 @@
 <div class="navbar navbar-dark bg-dark fixed-nav flex-column fixNavbarTopSm">
+  
   <div class="navbar-brand myBrand">
   
     <a *ngIf="!loggedIn()" routerLink="/" class="nav-link d-flex align-items-center">
@@ -11,7 +12,12 @@
         <span>MyWallet</span>      
     </a>
 
+    <a id="hamburger"  (click)="toggleCollapsedDiv()">
+      <i class="fas fa-bars"></i>
+    </a>
+
   </div>
+
   <p class="nav-item">
     <a class="nav-link" routerLink="/dashboard" routerLinkActive="activeLink" [ngClass]="{'disabled': !loggedIn()}">Dashboard</a>
   </p>
@@ -24,4 +30,19 @@
   <p *ngIf="loggedIn()" class="nav-item">
     <a class="nav-link" (click)='logout()'>Logout</a>
   </p>
+
+  <div class="navItemsCopy" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true" #collapse="bs-collapse">
+    <p class="nav-item">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive="activeLink" [ngClass]="{'disabled': !loggedIn()}">Dashboard</a>
+    </p>
+    <p class="nav-item">
+      <a class="nav-link" routerLink="/incomes" routerLinkActive="activeLink" [ngClass]="{'disabled': !loggedIn()}">Incomes</a>
+    </p>
+    <p class="nav-item">
+      <a class="nav-link" routerLink="/expenses" routerLinkActive="activeLink" [ngClass]="{'disabled': !loggedIn()}">Expenses</a>
+    </p>
+    <p *ngIf="loggedIn()" class="nav-item">
+      <a class="nav-link" (click)='logout()'>Logout</a>
+    </p>
+  </div>
 </div>

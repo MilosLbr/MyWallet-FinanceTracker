@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CollapseModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -80,6 +81,7 @@ export function jwtOptionsFactory() {
       BrowserModule,
       BrowserAnimationsModule,
       BsDatepickerModule.forRoot(),
+      CollapseModule.forRoot(),
       FormsModule,
       ReactiveFormsModule,
       ModalModule.forRoot(),
