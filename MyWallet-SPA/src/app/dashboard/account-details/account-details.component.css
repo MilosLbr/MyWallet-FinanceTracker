@@ -2,3 +2,28 @@
     width: 80%;
     margin: 20px auto;
 }
+
+@media (max-width: 500px){
+    .transactionsList{
+        width: 100%;
+        min-width: 319px;
+    }   
+
+    .reduceFontSmallScr{
+        font-size: 0.86rem;
+    }
+
+    .chartBtn{
+        margin: 5px 3px;
+    }
+
+    .list-group-item-action{
+        padding: .5rem 1rem;
+    }
+
+    .list-group-item-action .row{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+}

@@ -5,11 +5,11 @@
   <div class="container">
     <h4 class="text-center row  mt-3" >
       <div class="col-sm-11">Transactions on Bank account - {{this.selectedBankAccountName}} </div>
-        <button title="Stats"  class="btn btn-info col-sm-1"  [routerLink]="['/dashboard', this.selectedBankAccountId, this.selectedBankAccountName]"><i class="fas fa-chart-pie"></i></button>
+        <button title="Stats"  class="btn btn-info col-sm-1 chartBtn"  [routerLink]="['/dashboard', this.selectedBankAccountId, this.selectedBankAccountName]"><i class="fas fa-chart-pie"></i></button>
     </h4>
   </div>      
 
-  <ul class="list-group transactionsList">
+  <ul class="list-group transactionsList reduceFontSmallScr">
     <li 
     class="list-group-item list-group-item-action "
     *ngFor="let transactionGroup of transactions">

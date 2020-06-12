@@ -7,3 +7,11 @@
 span.accountName:hover{
     color: #17a2b8;
 }
+
+
+@media (max-width: 500px){
+    .accountDetailsContainer{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
