@@ -1,7 +1,7 @@
 <div class="container">
   <h4 class="row text-center mt-3 mb-3 ">  
     <div class="col-sm-11 ">Your expense records</div>
-    <button title="Expense stats" class="btn btn-info col-sm-1" [routerLink]="['/expenses/stats']">
+    <button title="Expense stats" class="btn btn-info col-sm-1 chartBtn" [routerLink]="['/expenses/stats']">
       <i class="fas fa-chart-pie"></i>
     </button>
   </h4>
@@ -12,29 +12,29 @@
 
   <div *ngFor="let expense of listOfExpenses" class=" row no-gutters mb-1 align-items-center expense-row">
 
-    <div class="col-sm-12 col-md-2  bg-dark text-white p-2 transactionDate">
+    <div class="col-sm-12 col-md-2  bg-dark text-white p-2 transactionDate mbSmallScreen">
       {{expense.dateAdded | date:"dd.MM.yyyy"}}
     </div>
-    <div class="col-2 col-md-1">
+    <div class="col-3 col-md-1">
       <button title="Edit expense record" class="btn btn-info" (click)="openEditExpenseModal(expense)"><i class="fas fa-pen"></i></button>
     </div>
-    <div class="col-2">      
+    <div class="col-4 col-md-2">      
       {{expense.expenseCategory.expenseCategoryName}}
     </div>
 
-    <div class="col-3">
+    <div class="col-4 col-md-3">
       {{expense.bankAccount.accountName}}
     </div>
 
-    <div class="col-2 col-md-1 text-danger">
+    <div class="col-3 col-md-1 text-danger">
       {{expense.ammount}}
     </div>
 
-    <div class="col-2">
+    <div class="col-4 col-md-2">
       {{expense.comment}}
     </div>
 
-    <div class="col-1">
+    <div class="col-4 col-md-1">
       <button title="Delete" class="btn btn-danger" (click)="deleteExpenseRecord(expense.id, template)">X</button>
     </div>
 

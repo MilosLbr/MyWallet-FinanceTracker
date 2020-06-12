@@ -2,7 +2,7 @@
 <div class="container">
   <h4 class="row text-center mt-3 mb-3 ">  
     <div class="col-sm-11 ">Your income records</div>
-    <button title="Income stats" class="btn btn-info col-sm-1" [routerLink]="['/incomes/stats']">
+    <button title="Income stats" class="btn btn-info col-sm-1 chartBtn" [routerLink]="['/incomes/stats']">
       <i class="fas fa-chart-pie"></i>
     </button>
   </h4>
@@ -14,29 +14,29 @@
 
   <div *ngFor="let income of listOfIncomes" class=" row no-gutters mb-1 align-items-center income-row">
 
-    <div class="col-sm-12 col-md-2 bg-dark text-white p-2 transactionDate">
+    <div class="col-sm-12 col-md-2 bg-dark text-white p-2 transactionDate mbSmallScreen">
       {{income.dateAdded | date:"dd.MM.yyyy"}}
     </div>
-    <div class="col-2 col-md-1">
+    <div class="col-3 col-md-1">
       <button title="Edit income record" class="btn btn-info" (click)="openEditIncomeModal(income)"><i class="fas fa-pen"></i></button>
     </div>
-    <div class="col-2">      
+    <div class="col-4 col-md-2">      
       {{income.incomeCategory.incomeCategoryName}}
     </div>
 
-    <div class="col-3">
+    <div class="col-4 col-md-3">
       {{income.bankAccount.accountName}}
     </div>
 
-    <div class="col-2 col-md-1 text-success">
+    <div class="col-3 col-md-1 text-success">
       {{income.ammount}}
     </div>
 
-    <div class="col-2">
+    <div class="col-4 col-md-2">
       {{income.comment}}
     </div>
 
-    <div class="col-1">
+    <div class="col-4 col-md-1">
       <button title="Delete" (click)="deleteIncomeRecord(income.id, template)" class="btn btn-danger">X</button>
     </div>
 
