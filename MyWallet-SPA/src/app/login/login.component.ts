@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
     username: 'tester',
     password: 'password'
   }
+  displayLoadingAnimation = false;
+  displayLoadingAnimationTesterLogin = false;
 
   constructor(private authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
@@ -25,29 +27,34 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){
       const {username, password } = this.loginForm.value;      
       event.target.disabled = true;
+      this.displayLoadingAnimation = true;
 
       this.authService.login(username, password).subscribe(() => {
         this.alertify.success("Logged in successfully!");
         this.loginForm.reset();
+        this.displayLoadingAnimation = false;
         this.router.navigate(["/dashboard"])
       }, error => {
         this.alertify.error(error.error.error_description);
         event.target.disabled = false;
+        this.displayLoadingAnimation = false;
       });
     }
   }
 
   loginAsTester(event){
     event.target.disabled = true;
+    this.displayLoadingAnimationTesterLogin =true;
     
     this.authService.login(this.testerLoginData.username, this.testerLoginData.password).subscribe(() => {
       this.alertify.success("Logged in successfully!");
       this.loginForm.reset();
+      this.displayLoadingAnimationTesterLogin =false;
       this.router.navigate(["/dashboard"]);
-      
     }, error => {
       this.alertify.error(error.error.error_description);
-      event.target.disabled = false;
+      event.target.disabled = false;      
+      this.displayLoadingAnimationTesterLogin =false;
     });
   }
 

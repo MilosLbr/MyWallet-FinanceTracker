@@ -32,13 +32,23 @@
       </div>
     </div>
 
-    <button [disabled]="!loginForm.valid"
-    type="submit"
-    class="btn btn-success">
-    Login</button>
+    <div class="d-flex align-items-center">
+      <button [disabled]="!loginForm.valid"
+      type="submit"
+      class="btn btn-success mr-1">
+      Login</button>
+    
+      <div class="loader" *ngIf="displayLoadingAnimation"></div>
+    </div>
+    
 
     <hr>
-    <button class="btn btn-link" (click)="loginAsTester($event)">Login as Tester</button>
+
+    <div class="d-flex align-items-center">
+      <button class="btn btn-link mr-2" (click)="loginAsTester($event)">Login as Tester</button>
+      <div class="loader" *ngIf="displayLoadingAnimationTesterLogin"></div>
+    </div>
+   
   </form>
 
 </div>

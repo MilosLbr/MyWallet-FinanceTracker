@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   @ViewChild("registerForm", {static: false}) registerForm: NgForm; 
+  displayLoginAnimation = false;
 
   constructor(private authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
@@ -19,13 +20,16 @@ export class RegisterComponent implements OnInit {
 
   submitForm(){
     const {username, email, password } = this.registerForm.value;
+    this.displayLoginAnimation = true;
 
     if(this.registerForm.valid){
       this.authService.registerUser(username, email, password).subscribe(() => {     
         this.alertify.success("Successfuly registered!");
+        this.displayLoginAnimation = false;
         this.registerForm.reset();        
       }, error=>{
         this.alertify.error(error.error.message);
+        this.displayLoginAnimation = false;
       }, () => {
         this.authService.login(username, password).subscribe(()=> {
           this.router.navigate(["/dashboard"])

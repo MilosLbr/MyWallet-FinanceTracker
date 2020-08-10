@@ -53,9 +53,14 @@
         </div>
     </div>
 
-    <button [disabled]="!registerForm.valid"
-    type="submit" 
-    class="btn btn-success">Register</button>
+    <div class="d-flex align-items-center">
+      <button [disabled]="!registerForm.valid"
+      type="submit" 
+      class="btn btn-success mr-1">Register</button>
+
+      <div class="loader" *ngIf="displayLoginAnimation"></div>
+    </div>
+    
 
   </form>
 </div>
