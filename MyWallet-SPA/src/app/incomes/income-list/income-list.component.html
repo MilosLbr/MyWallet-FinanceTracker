@@ -1,7 +1,7 @@
 
 <div class="container">
   <h4 class="row text-center mt-3 mb-3 ">  
-    <div class="col-sm-11 ">Your income records</div>
+    <div class="col-sm-10 ">Your income records</div>
     <button title="Income stats" class="btn btn-info col-sm-1 chartBtn" [routerLink]="['/incomes/stats']">
       <i class="fas fa-chart-pie"></i>
     </button>
@@ -17,7 +17,7 @@
     <div class="col-sm-12 col-md-2 bg-dark text-white p-2 transactionDate mbSmallScreen">
       {{income.dateAdded | date:"dd.MM.yyyy"}}
     </div>
-    <div class="col-3 col-md-1">
+    <div class="col-4 col-md-1">
       <button title="Edit income record" class="btn btn-info" (click)="openEditIncomeModal(income)"><i class="fas fa-pen"></i></button>
     </div>
     <div class="col-4 col-md-2">      
@@ -28,7 +28,7 @@
       {{income.bankAccount.accountName}}
     </div>
 
-    <div class="col-3 col-md-1 text-success">
+    <div class="col-4 col-md-1 text-success">
       {{income.ammount}}
     </div>
 
